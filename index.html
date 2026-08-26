@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Shark Ofertas Insanas</title>
+  <title>Shark Ofertas | Ofertas Insanas</title>
 
   <style>
     * {
@@ -13,196 +13,694 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #080808;
-      color: white;
+    :root {
+      --red: #e50909;
+      --red-light: #ff2424;
+      --black: #050505;
+      --dark: #0b0b0b;
+      --card: #101010;
+      --gray: #a5a5a5;
+      --green: #58d68d;
+      --border: #292929;
+      --white: #f5f5f5;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================= HEADER ================= */
+
     header {
-      background: #000;
-      border-bottom: 3px solid #e60000;
-      padding: 18px 8%;
+      width: 100%;
+      background: rgba(5, 5, 5, 0.97);
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1300px;
+      margin: auto;
+      min-height: 82px;
+      padding: 0 25px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
     .logo {
-      font-size: 28px;
-      font-weight: bold;
-      font-style: italic;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 200px;
     }
 
-    .logo span {
-      color: #ff0000;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #ff0000;
-    }
-
-    .hero {
-      min-height: 380px;
-      padding: 70px 8%;
+    .shark-icon {
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      transform: rotate(-15deg);
+    }
+
+    .logo-text {
+      line-height: 0.9;
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      font-size: 25px;
+    }
+
+    .logo-text .shark {
+      color: white;
+      display: block;
+    }
+
+    .logo-text .ofertas {
+      color: var(--red);
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--red-light);
+    }
+
+    .grupo-topo {
+      background: linear-gradient(135deg, var(--red-light), #a90000);
+      padding: 14px 24px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      box-shadow: 0 0 20px rgba(229, 9, 9, 0.18);
+      transition: 0.3s;
+    }
+
+    .grupo-topo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(229, 9, 9, 0.4);
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #252525;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
-        radial-gradient(circle at center, #3b0000 0%, #080808 65%);
-      border-bottom: 2px solid #ff0000;
+        linear-gradient(
+          90deg,
+          #050505 0%,
+          rgba(5, 5, 5, 0.96) 30%,
+          rgba(5, 5, 5, 0.55) 58%,
+          rgba(5, 5, 5, 0.18) 100%
+        ),
+        url("https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=85");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.75);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 75% 50%, rgba(229, 9, 9, 0.18), transparent 35%),
+        linear-gradient(120deg, transparent 60%, rgba(229, 9, 9, 0.08));
+      pointer-events: none;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1300px;
+      margin: auto;
+      padding: 70px 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 580px;
     }
 
     .hero h1 {
-      font-size: 55px;
-      text-transform: uppercase;
+      font-size: clamp(50px, 7vw, 92px);
+      line-height: 0.82;
+      font-weight: 1000;
       font-style: italic;
-      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: -4px;
+      margin-bottom: 22px;
     }
 
-    .hero h1 span {
-      color: #ff0000;
+    .hero h1 .branco {
+      display: block;
+      color: white;
+    }
+
+    .hero h1 .vermelho {
+      display: block;
+      color: var(--red);
+      text-shadow: 0 8px 30px rgba(229, 9, 9, 0.3);
+    }
+
+    .hero h1 .pequeno {
+      display: block;
+      font-size: 0.48em;
+      letter-spacing: -1px;
+      color: #ddd;
+      margin-top: 8px;
     }
 
     .hero p {
-      color: #cccccc;
+      color: #c5c5c5;
       font-size: 20px;
+      line-height: 1.5;
+      max-width: 480px;
       margin-bottom: 30px;
     }
 
-    .botao {
-      display: inline-block;
-      background: #e60000;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
+    .hero p strong {
+      color: var(--red-light);
+    }
+
+    .hero-beneficios {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .mini-beneficio {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mini-icon {
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 22px;
+    }
+
+    .mini-beneficio strong {
+      display: block;
+      font-size: 13px;
       text-transform: uppercase;
-      box-shadow: 0 0 20px rgba(255,0,0,0.4);
     }
 
-    .botao:hover {
-      background: white;
-      color: #e60000;
+    .mini-beneficio span {
+      color: #888;
+      font-size: 13px;
     }
 
-    .ofertas {
-      padding: 55px 8%;
+    .botao-principal {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, var(--red-light), #a90000);
+      color: white;
+      padding: 18px 35px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+      box-shadow: 0 8px 30px rgba(229, 9, 9, 0.25);
     }
 
-    .titulo {
-      text-align: center;
-      font-size: 32px;
+    .botao-principal:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(229, 9, 9, 0.45);
+    }
+
+    /* ================= BENEFÍCIOS ================= */
+
+    .beneficios {
+      max-width: 1300px;
+      margin: -1px auto 0;
+      padding: 0 25px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .beneficios-box {
+      background: linear-gradient(135deg, #111, #090909);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .beneficio {
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      border-right: 1px solid #292929;
+    }
+
+    .beneficio:last-child {
+      border-right: none;
+    }
+
+    .beneficio-icone {
+      color: var(--red);
+      font-size: 28px;
+    }
+
+    .beneficio h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .beneficio p {
+      color: #999;
+      font-size: 13px;
+    }
+
+    /* ================= PRODUTOS ================= */
+
+    .produtos-section {
+      max-width: 1300px;
+      margin: auto;
+      padding: 65px 25px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
       text-transform: uppercase;
       font-style: italic;
-      margin-bottom: 40px;
+      letter-spacing: -1px;
     }
 
-    .titulo span {
-      color: #ff0000;
+    .section-title span {
+      color: var(--red);
     }
 
-    .produtos {
+    .ver-todas {
+      border: 1px solid #333;
+      padding: 13px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 13px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .ver-todas:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .produtos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
     .produto {
-      background: #111;
+      background: linear-gradient(180deg, #121212, #090909);
       border: 1px solid #292929;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      transition: 0.3s;
+      transition: 0.35s;
+      position: relative;
     }
 
     .produto:hover {
       transform: translateY(-8px);
-      border-color: #ff0000;
-      box-shadow: 0 0 25px rgba(255,0,0,0.25);
+      border-color: #8d1717;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
     }
 
-    .imagem-produto {
-      height: 180px;
-      background: linear-gradient(135deg, #222, #080808);
+    .desconto {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      background: var(--red);
+      padding: 8px 11px;
+      border-radius: 5px;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .produto-imagem {
+      height: 260px;
+      background: radial-gradient(circle, #1e1e1e, #090909);
+      padding: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 70px;
-      border-bottom: 2px solid #e60000;
+      overflow: hidden;
     }
 
-    .info {
+    .produto-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: normal;
+      transition: 0.4s;
+    }
+
+    .produto:hover .produto-imagem img {
+      transform: scale(1.07);
+    }
+
+    .produto-info {
       padding: 20px;
+      border-top: 1px solid #1d1d1d;
     }
 
-    .info h3 {
-      font-size: 20px;
-      margin-bottom: 12px;
+    .produto-info h3 {
+      font-size: 19px;
+      margin-bottom: 14px;
+      min-height: 45px;
     }
 
     .preco-antigo {
       color: #777;
       text-decoration: line-through;
-      margin-bottom: 5px;
+      font-size: 14px;
+      margin-bottom: 6px;
     }
 
     .preco {
-      color: #32d46b;
-      font-size: 28px;
-      font-weight: bold;
+      color: var(--green);
+      font-size: 25px;
+      font-weight: 900;
       margin-bottom: 18px;
     }
 
-    .comprar {
+    .botao-oferta {
+      width: 100%;
       display: block;
       text-align: center;
-      background: #e60000;
-      color: white;
-      padding: 12px;
-      text-decoration: none;
-      font-weight: bold;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--red-light), #bd0000);
       border-radius: 5px;
+      font-size: 14px;
+      font-weight: 900;
       text-transform: uppercase;
+      transition: 0.3s;
     }
 
-    .comprar:hover {
-      background: #ff2b2b;
+    .botao-oferta:hover {
+      background: white;
+      color: var(--red);
     }
+
+    /* ================= TELEGRAM ================= */
+
+    .telegram-section {
+      max-width: 1300px;
+      margin: 0 auto 60px;
+      padding: 0 25px;
+    }
+
+    .telegram-box {
+      background:
+        linear-gradient(90deg, rgba(229,9,9,0.13), rgba(229,9,9,0.03)),
+        #0b0b0b;
+      border: 1px solid #7d1515;
+      border-radius: 8px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .telegram-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .telegram-icone {
+      width: 55px;
+      height: 55px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--red);
+    }
+
+    .telegram-info h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .telegram-info h2 span {
+      color: var(--red);
+    }
+
+    .telegram-info p {
+      color: #aaa;
+    }
+
+    /* ================= FOOTER ================= */
 
     footer {
-      text-align: center;
-      padding: 30px;
-      background: #000;
-      border-top: 2px solid #e60000;
-      color: #888;
-      margin-top: 40px;
+      border-top: 1px solid #222;
+      background: #050505;
     }
 
-    @media (max-width: 700px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
+    .footer-container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 50px 25px 25px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .footer-logo .logo-text {
+      font-size: 22px;
+    }
+
+    .footer-column p {
+      color: #888;
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 260px;
+    }
+
+    .footer-column h3 {
+      text-transform: uppercase;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #888;
+      margin-bottom: 11px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: var(--red);
+    }
+
+    .pagamentos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pagamento {
+      background: #171717;
+      border: 1px solid #292929;
+      padding: 10px 13px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ddd;
+    }
+
+    .copyright {
+      max-width: 1300px;
+      margin: auto;
+      padding: 22px 25px;
+      border-top: 1px solid #191919;
+      color: #666;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* ================= RESPONSIVO ================= */
+
+    @media (max-width: 1000px) {
+      nav {
+        display: none;
       }
 
-      nav a {
-        margin: 0 8px;
+      .beneficios-box {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .beneficio:nth-child(2) {
+        border-right: none;
+      }
+
+      .produtos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .header-container {
+        padding: 0 15px;
+      }
+
+      .grupo-topo {
+        padding: 11px 13px;
+        font-size: 11px;
+      }
+
+      .logo {
+        min-width: auto;
+      }
+
+      .logo-text {
+        font-size: 19px;
+      }
+
+      .shark-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero::before {
+        background-position: 65% center;
       }
 
       .hero h1 {
-        font-size: 36px;
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .beneficios-box {
+        grid-template-columns: 1fr;
+      }
+
+      .beneficio {
+        border-right: none;
+        border-bottom: 1px solid #292929;
+      }
+
+      .beneficio:last-child {
+        border-bottom: none;
+      }
+
+      .produtos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+      }
+
+      .telegram-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .telegram-info {
+        align-items: flex-start;
       }
     }
   </style>
@@ -210,78 +708,377 @@
 
 <body>
 
-  <header>
-    <div class="logo">🦈 SHARK <span>OFERTAS</span></div>
+  <!-- HEADER -->
 
-    <nav>
-      <a href="#">Início</a>
-      <a href="#ofertas">Ofertas</a>
-    </nav>
+  <header>
+    <div class="header-container">
+
+      <a href="#" class="logo">
+        <div class="shark-icon">◢</div>
+
+        <div class="logo-text">
+          <span class="shark">Shark</span>
+          <span class="ofertas">Ofertas</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#" class="active">Início</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a href="#" class="grupo-topo">
+        ➤ Entrar no Grupo
+      </a>
+
+    </div>
   </header>
 
+
+  <!-- HERO -->
+
   <section class="hero">
-    <div>
-      <h1>Ofertas <span>Insanas</span> para você!</h1>
 
-      <p>Os melhores produtos com preços que mordem a concorrência.</p>
+    <div class="hero-container">
 
-      <a class="botao" href="#ofertas">VER OFERTAS 🔥</a>
+      <div class="hero-content">
+
+        <h1>
+          <span class="branco">Ofertas</span>
+          <span class="vermelho">Insanas</span>
+          <span class="pequeno">Para você!</span>
+        </h1>
+
+        <p>
+          Os <strong>melhores produtos</strong> com preços que cabem no seu bolso!
+        </p>
+
+        <div class="hero-beneficios">
+
+          <div class="mini-beneficio">
+            <div class="mini-icon">%</div>
+            <div>
+              <strong>Descontos de verdade</strong>
+              <span>Economize muito!</span>
+            </div>
+          </div>
+
+          <div class="mini-beneficio">
+            <div class="mini-icon">✓</div>
+            <div>
+              <strong>Compra segura</strong>
+              <span>Suas informações protegidas</span>
+            </div>
+          </div>
+
+        </div>
+
+        <a href="#ofertas" class="botao-principal">
+          Ver Ofertas
+          <span>›</span>
+        </a>
+
+      </div>
+
     </div>
+
   </section>
 
-  <section class="ofertas" id="ofertas">
 
-    <h2 class="titulo">🔥 Ofertas <span>em Destaque</span></h2>
+  <!-- BENEFÍCIOS -->
 
-    <div class="produtos">
+  <section class="beneficios">
 
-      <div class="produto">
-        <div class="imagem-produto">📱</div>
+    <div class="beneficios-box">
 
-        <div class="info">
-          <h3>Smartphone em Oferta</h3>
+      <div class="beneficio">
+        <div class="beneficio-icone">▣</div>
+        <div>
+          <h3>Envio Rápido</h3>
+          <p>Para todo o Brasil</p>
+        </div>
+      </div>
+
+      <div class="beneficio">
+        <div class="beneficio-icone">%</div>
+        <div>
+          <h3>Melhores Ofertas</h3>
+          <p>Preços imbatíveis</p>
+        </div>
+      </div>
+
+      <div class="beneficio">
+        <div class="beneficio-icone">✓</div>
+        <div>
+          <h3>Compra Segura</h3>
+          <p>Seus dados protegidos</p>
+        </div>
+      </div>
+
+      <div class="beneficio">
+        <div class="beneficio-icone">◉</div>
+        <div>
+          <h3>Suporte 24h</h3>
+          <p>Atendimento dedicado</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUTOS -->
+
+  <section class="produtos-section" id="ofertas">
+
+    <div class="section-header">
+
+      <h2 class="section-title">
+        Ofertas em <span>Destaque</span>
+      </h2>
+
+      <a href="#" class="ver-todas">
+        Ver Todas ›
+      </a>
+
+    </div>
+
+
+    <div class="produtos-grid">
+
+
+      <!-- PRODUTO 1 -->
+
+      <article class="produto">
+
+        <div class="desconto">-50%</div>
+
+        <div class="produto-imagem">
+          <img
+            src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=85"
+            alt="Smartphone"
+          >
+        </div>
+
+        <div class="produto-info">
+
+          <h3>Smartphone Premium</h3>
 
           <p class="preco-antigo">De R$ 1.999,90</p>
 
           <p class="preco">R$ 999,90</p>
 
-          <a class="comprar" href="#">VER OFERTA</a>
+          <!-- DEPOIS VAMOS COLOCAR O LINK DE AFILIADO AQUI -->
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
+
         </div>
+
+      </article>
+
+
+      <!-- PRODUTO 2 -->
+
+      <article class="produto">
+
+        <div class="desconto">-60%</div>
+
+        <div class="produto-imagem">
+          <img
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85"
+            alt="Fone de ouvido"
+          >
+        </div>
+
+        <div class="produto-info">
+
+          <h3>Fone Bluetooth Premium</h3>
+
+          <p class="preco-antigo">De R$ 249,90</p>
+
+          <p class="preco">R$ 99,90</p>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUTO 3 -->
+
+      <article class="produto">
+
+        <div class="desconto">-47%</div>
+
+        <div class="produto-imagem">
+          <img
+            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=85"
+            alt="Smartwatch"
+          >
+        </div>
+
+        <div class="produto-info">
+
+          <h3>Smartwatch Inteligente</h3>
+
+          <p class="preco-antigo">De R$ 189,90</p>
+
+          <p class="preco">R$ 99,90</p>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUTO 4 -->
+
+      <article class="produto">
+
+        <div class="desconto">-45%</div>
+
+        <div class="produto-imagem">
+          <img
+            src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=85"
+            alt="Produto para cozinha"
+          >
+        </div>
+
+        <div class="produto-info">
+
+          <h3>Produto para Cozinha</h3>
+
+          <p class="preco-antigo">De R$ 399,90</p>
+
+          <p class="preco">R$ 219,90</p>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- TELEGRAM -->
+
+  <section class="telegram-section">
+
+    <div class="telegram-box">
+
+      <div class="telegram-info">
+
+        <div class="telegram-icone">➤</div>
+
+        <div>
+          <h2>
+            Entre no nosso grupo do
+            <span>Telegram</span>
+          </h2>
+
+          <p>Receba ofertas exclusivas todos os dias!</p>
+        </div>
+
       </div>
 
-      <div class="produto">
-        <div class="imagem-produto">🎧</div>
+      <!-- COLOCAREMOS SEU LINK DO GRUPO AQUI -->
+      <a href="#" class="botao-principal">
+        Entrar no Grupo
+      </a>
 
-        <div class="info">
-          <h3>Fone Bluetooth</h3>
+    </div>
 
-          <p class="preco-antigo">De R$ 149,90</p>
+  </section>
 
-          <p class="preco">R$ 79,90</p>
 
-          <a class="comprar" href="#">VER OFERTA</a>
+  <!-- FOOTER -->
+
+  <footer id="contato">
+
+    <div class="footer-container">
+
+      <div class="footer-column">
+
+        <div class="footer-logo">
+
+          <div class="shark-icon">◢</div>
+
+          <div class="logo-text">
+            <span class="shark">Shark</span>
+            <span class="ofertas">Ofertas</span>
+          </div>
+
         </div>
+
+        <p>
+          Aqui você encontra as melhores ofertas da internet
+          com descontos reais todos os dias.
+        </p>
+
       </div>
 
-      <div class="produto">
-        <div class="imagem-produto">⌚</div>
 
-        <div class="info">
-          <h3>Smartwatch Premium</h3>
+      <div class="footer-column">
 
-          <p class="preco-antigo">De R$ 299,90</p>
+        <h3>Links Rápidos</h3>
 
-          <p class="preco">R$ 159,90</p>
+        <a href="#">Início</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#contato">Contato</a>
 
-          <a class="comprar" href="#">VER OFERTA</a>
+      </div>
+
+
+      <div class="footer-column" id="categorias">
+
+        <h3>Categorias</h3>
+
+        <a href="#">Eletrônicos</a>
+        <a href="#">Casa e Cozinha</a>
+        <a href="#">Beleza</a>
+        <a href="#">Esportes</a>
+        <a href="#">Automotivo</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Formas de Pagamento</h3>
+
+        <div class="pagamentos">
+          <span class="pagamento">VISA</span>
+          <span class="pagamento">Mastercard</span>
+          <span class="pagamento">PIX</span>
+          <span class="pagamento">Boleto</span>
         </div>
+
       </div>
 
     </div>
-  </section>
 
-  <footer>
-    © 2026 SHARK OFERTAS — OFERTAS INSANAS TODOS OS DIAS 🦈
+
+    <div class="copyright">
+      © 2026 Shark Ofertas. Todos os direitos reservados.
+    </div>
+
   </footer>
 
 </body>
