@@ -4,19 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Shark Ofertas | Ofertas Insanas</title>
+  <title>🦈 Shark Ofertas | Ofertas Insanas</title>
+
+  <!-- ÍCONE DO SITE -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦈</text></svg>"
+  >
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --red: #e50909;
       --red-light: #ff2424;
       --black: #050505;
+      --dark: #101010;
       --green: #58d68d;
+      --telegram: #229ED9;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -25,15 +39,21 @@
       overflow-x: hidden;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
 
     header {
       width: 100%;
-      background: #050505;
+      background: rgba(5, 5, 5, 0.96);
       border-bottom: 1px solid #222;
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
     .header-container {
@@ -50,23 +70,24 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .shark-icon {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 2px solid var(--red);
       border-radius: 50%;
-      color: white;
-      font-size: 24px;
+      background: #111;
+      font-size: 30px;
+      box-shadow: 0 0 20px rgba(229, 9, 9, 0.25);
     }
 
     .logo-text {
-      line-height: .9;
+      line-height: 0.9;
       font-weight: 900;
       font-style: italic;
       text-transform: uppercase;
@@ -92,21 +113,34 @@
       font-size: 14px;
       font-weight: bold;
       text-transform: uppercase;
+      transition: 0.2s;
     }
 
-    nav a:hover { color: var(--red); }
+    nav a:hover {
+      color: var(--red);
+    }
 
     .grupo-topo {
       background: linear-gradient(135deg, var(--red-light), #a90000);
       padding: 14px 24px;
-      border-radius: 5px;
+      border-radius: 6px;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 14px;
+      transition: 0.2s;
     }
 
+    .grupo-topo:hover,
+    .botao-principal:hover,
+    .botao-oferta:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* HERO */
+
     .hero {
-      min-height: 500px;
+      min-height: 540px;
       position: relative;
       display: flex;
       align-items: center;
@@ -118,7 +152,13 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, #050505 0%, rgba(5,5,5,.92) 38%, rgba(5,5,5,.3) 100%),
+        linear-gradient(
+          90deg,
+          #050505 0%,
+          rgba(5, 5, 5, 0.95) 35%,
+          rgba(5, 5, 5, 0.45) 70%,
+          rgba(5, 5, 5, 0.15) 100%
+        ),
         url("https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=85");
       background-size: cover;
       background-position: center;
@@ -133,20 +173,48 @@
       z-index: 2;
     }
 
-    .hero-content { max-width: 600px; }
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      border: 1px solid #333;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
     .hero h1 {
       font-size: clamp(50px, 7vw, 90px);
-      line-height: .85;
+      line-height: 0.85;
       font-weight: 900;
       font-style: italic;
       text-transform: uppercase;
       margin-bottom: 25px;
     }
 
-    .branco, .vermelho, .pequeno { display: block; }
-    .vermelho { color: var(--red); }
-    .pequeno { font-size: .5em; color: #ddd; }
+    .branco,
+    .vermelho,
+    .pequeno {
+      display: block;
+    }
+
+    .vermelho {
+      color: var(--red);
+    }
+
+    .pequeno {
+      font-size: 0.5em;
+      color: #ddd;
+    }
 
     .hero p {
       color: #c5c5c5;
@@ -155,11 +223,13 @@
       margin-bottom: 30px;
     }
 
-    .hero p strong { color: var(--red-light); }
+    .hero p strong {
+      color: var(--red-light);
+    }
 
     .hero-beneficios {
       display: flex;
-      gap: 30px;
+      gap: 25px;
       margin-bottom: 35px;
       flex-wrap: wrap;
     }
@@ -193,19 +263,46 @@
       font-size: 12px;
     }
 
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
     .botao-principal {
       display: inline-block;
       background: linear-gradient(135deg, var(--red-light), #a90000);
-      padding: 18px 35px;
-      border-radius: 5px;
+      padding: 18px 30px;
+      border-radius: 6px;
       text-transform: uppercase;
       font-weight: 900;
+      transition: 0.2s;
     }
+
+    .botao-secundario {
+      display: inline-block;
+      border: 1px solid #555;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 18px 30px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      font-weight: 900;
+      transition: 0.2s;
+    }
+
+    .botao-secundario:hover {
+      border-color: var(--telegram);
+      color: #fff;
+    }
+
+    /* BENEFÍCIOS */
 
     .beneficios {
       max-width: 1300px;
-      margin: auto;
+      margin: -35px auto 0;
       padding: 0 25px;
+      position: relative;
+      z-index: 3;
     }
 
     .beneficios-box {
@@ -213,6 +310,8 @@
       border: 1px solid #292929;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .beneficio {
@@ -220,7 +319,9 @@
       border-right: 1px solid #292929;
     }
 
-    .beneficio:last-child { border: none; }
+    .beneficio:last-child {
+      border: none;
+    }
 
     .beneficio h3 {
       text-transform: uppercase;
@@ -233,10 +334,12 @@
       font-size: 13px;
     }
 
+    /* PRODUTOS */
+
     .produtos-section {
       max-width: 1300px;
       margin: auto;
-      padding: 70px 25px;
+      padding: 90px 25px 70px;
     }
 
     .section-header {
@@ -244,6 +347,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 35px;
+      gap: 20px;
     }
 
     .section-title {
@@ -253,12 +357,19 @@
       font-style: italic;
     }
 
-    .section-title span { color: var(--red); }
+    .section-title span {
+      color: var(--red);
+    }
 
     .ver-todas {
       border: 1px solid #333;
       padding: 13px 20px;
       font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .ver-todas:hover {
+      border-color: var(--red);
     }
 
     .produtos-grid {
@@ -273,6 +384,12 @@
       border-radius: 8px;
       overflow: hidden;
       position: relative;
+      transition: 0.25s;
+    }
+
+    .produto:hover {
+      transform: translateY(-5px);
+      border-color: #555;
     }
 
     .desconto {
@@ -329,22 +446,48 @@
       font-weight: bold;
       text-transform: uppercase;
       border-radius: 5px;
+      transition: 0.2s;
     }
+
+    /* TELEGRAM */
 
     .telegram-section {
       max-width: 1300px;
       margin: auto;
-      padding: 0 25px 60px;
+      padding: 0 25px 70px;
     }
 
     .telegram-box {
-      background: #101010;
-      border: 1px solid #7d1515;
-      padding: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(34, 158, 217, 0.15),
+          rgba(229, 9, 9, 0.1)
+        );
+      border: 1px solid #244e64;
+      padding: 35px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 25px;
+      border-radius: 10px;
+    }
+
+    .telegram-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .telegram-icon {
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--telegram);
+      font-size: 32px;
     }
 
     .telegram-info h2 {
@@ -353,8 +496,38 @@
       margin-bottom: 7px;
     }
 
-    .telegram-info h2 span { color: var(--red); }
-    .telegram-info p { color: #999; }
+    .telegram-info h2 span {
+      color: #38bdf8;
+    }
+
+    .telegram-info p {
+      color: #aaa;
+    }
+
+    /* BOTÃO FLUTUANTE DO BOT */
+
+    .bot-float {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--telegram);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 10px 30px rgba(34, 158, 217, 0.35);
+      transition: 0.2s;
+    }
+
+    .bot-float:hover {
+      transform: scale(1.08);
+    }
+
+    /* FOOTER */
 
     footer {
       background: #050505;
@@ -368,6 +541,17 @@
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
       gap: 40px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-shark {
+      font-size: 40px;
     }
 
     .footer-column h3 {
@@ -384,6 +568,10 @@
       line-height: 1.8;
     }
 
+    .footer-column a:hover {
+      color: var(--red);
+    }
+
     .copyright {
       text-align: center;
       padding: 20px;
@@ -392,32 +580,115 @@
       font-size: 13px;
     }
 
+    /* RESPONSIVO */
+
     @media (max-width: 1000px) {
-      nav { display: none; }
-      .beneficios-box { grid-template-columns: repeat(2, 1fr); }
-      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      nav {
+        display: none;
+      }
+
+      .beneficios-box {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .beneficio:nth-child(2) {
+        border-right: none;
+      }
+
+      .beneficio:nth-child(1),
+      .beneficio:nth-child(2) {
+        border-bottom: 1px solid #292929;
+      }
+
+      .produtos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 650px) {
-      .header-container { padding: 0 15px; }
-      .grupo-topo { font-size: 11px; padding: 12px; }
-      .logo-text { font-size: 20px; }
+      .header-container {
+        padding: 12px 15px;
+      }
+
+      .grupo-topo {
+        font-size: 10px;
+        padding: 12px;
+      }
+
+      .logo-text {
+        font-size: 19px;
+      }
+
+      .shark-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .beneficios {
+        margin-top: -20px;
+      }
+
       .beneficios-box,
       .produtos-grid,
-      .footer-container { grid-template-columns: 1fr; }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .beneficio {
+        border-right: none !important;
+        border-bottom: 1px solid #292929 !important;
+      }
+
+      .beneficio:last-child {
+        border-bottom: none !important;
+      }
+
       .telegram-box,
-      .section-header { flex-direction: column; align-items: flex-start; }
+      .section-header,
+      .telegram-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .bot-float {
+        width: 58px;
+        height: 58px;
+        right: 18px;
+        bottom: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!--
+    LINK DO GRUPO ATUAL:
+    https://t.me/+15l4h2v4YzpmM2Mx
+
+    QUANDO VOCÊ ME PASSAR O @ DO BOT,
+    EU COLOCO O LINK EXATO DO BOT AQUI.
+  -->
+
   <header>
     <div class="header-container">
 
       <a href="#" class="logo">
-        <div class="shark-icon">S</div>
+        <div class="shark-icon">🦈</div>
+
         <div class="logo-text">
           <span class="shark">Shark</span>
           <span class="ofertas">Ofertas</span>
@@ -431,7 +702,6 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <!-- LINK DO SEU GRUPO -->
       <a
         href="https://t.me/+15l4h2v4YzpmM2Mx"
         target="_blank"
@@ -448,7 +718,12 @@
   <section class="hero">
 
     <div class="hero-container">
+
       <div class="hero-content">
+
+        <div class="hero-badge">
+          🦈 Ofertas selecionadas todos os dias
+        </div>
 
         <h1>
           <span class="branco">Ofertas</span>
@@ -464,6 +739,7 @@
 
           <div class="mini-beneficio">
             <div class="mini-icon">%</div>
+
             <div>
               <strong>Descontos reais</strong>
               <span>Economize muito</span>
@@ -472,6 +748,7 @@
 
           <div class="mini-beneficio">
             <div class="mini-icon">✓</div>
+
             <div>
               <strong>Compra segura</strong>
               <span>Ofertas selecionadas</span>
@@ -480,11 +757,25 @@
 
         </div>
 
-        <a href="#ofertas" class="botao-principal">
-          Ver Ofertas
-        </a>
+        <div class="hero-buttons">
+
+          <a href="#ofertas" class="botao-principal">
+            Ver Ofertas
+          </a>
+
+          <a
+            href="https://t.me/+15l4h2v4YzpmM2Mx"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="botao-secundario"
+          >
+            ✈️ Telegram
+          </a>
+
+        </div>
 
       </div>
+
     </div>
 
   </section>
@@ -495,22 +786,22 @@
     <div class="beneficios-box">
 
       <div class="beneficio">
-        <h3>Envio Rápido</h3>
+        <h3>🚚 Envio Rápido</h3>
         <p>Para todo o Brasil</p>
       </div>
 
       <div class="beneficio">
-        <h3>Melhores Ofertas</h3>
+        <h3>🔥 Melhores Ofertas</h3>
         <p>Preços imbatíveis</p>
       </div>
 
       <div class="beneficio">
-        <h3>Compra Segura</h3>
+        <h3>🔒 Compra Segura</h3>
         <p>Produtos selecionados</p>
       </div>
 
       <div class="beneficio">
-        <h3>Ofertas Diárias</h3>
+        <h3>⚡ Ofertas Diárias</h3>
         <p>Novidades sempre</p>
       </div>
 
@@ -522,6 +813,7 @@
   <section class="produtos-section" id="ofertas">
 
     <div class="section-header">
+
       <h2 class="section-title">
         Ofertas em <span>Destaque</span>
       </h2>
@@ -529,12 +821,14 @@
       <a href="#ofertas" class="ver-todas">
         Ver Todas
       </a>
+
     </div>
 
 
     <div class="produtos-grid">
 
       <article class="produto">
+
         <div class="desconto">-50%</div>
 
         <div class="produto-imagem">
@@ -548,12 +842,17 @@
           <h3>Smartphone Premium</h3>
           <p class="preco-antigo">De R$ 1.999,90</p>
           <p class="preco">R$ 999,90</p>
-          <a href="#" class="botao-oferta">Ver Oferta</a>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
         </div>
+
       </article>
 
 
       <article class="produto">
+
         <div class="desconto">-60%</div>
 
         <div class="produto-imagem">
@@ -567,12 +866,17 @@
           <h3>Fone Bluetooth Premium</h3>
           <p class="preco-antigo">De R$ 249,90</p>
           <p class="preco">R$ 99,90</p>
-          <a href="#" class="botao-oferta">Ver Oferta</a>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
         </div>
+
       </article>
 
 
       <article class="produto">
+
         <div class="desconto">-47%</div>
 
         <div class="produto-imagem">
@@ -586,12 +890,17 @@
           <h3>Smartwatch Inteligente</h3>
           <p class="preco-antigo">De R$ 189,90</p>
           <p class="preco">R$ 99,90</p>
-          <a href="#" class="botao-oferta">Ver Oferta</a>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
         </div>
+
       </article>
 
 
       <article class="produto">
+
         <div class="desconto">-45%</div>
 
         <div class="produto-imagem">
@@ -605,8 +914,12 @@
           <h3>Produto para Cozinha</h3>
           <p class="preco-antigo">De R$ 399,90</p>
           <p class="preco">R$ 219,90</p>
-          <a href="#" class="botao-oferta">Ver Oferta</a>
+
+          <a href="#" class="botao-oferta">
+            Ver Oferta
+          </a>
         </div>
+
       </article>
 
     </div>
@@ -614,20 +927,29 @@
   </section>
 
 
-  <!-- BOTÃO DO TELEGRAM COM SEU LINK -->
-
   <section class="telegram-section">
 
     <div class="telegram-box">
 
       <div class="telegram-info">
-        <h2>
-          Entre no nosso grupo do
-          <span>Telegram</span>
-        </h2>
 
-        <p>Receba ofertas exclusivas todos os dias!</p>
+        <div class="telegram-icon">
+          ✈️
+        </div>
+
+        <div>
+          <h2>
+            Entre no nosso grupo do
+            <span>Telegram</span>
+          </h2>
+
+          <p>
+            🦈 Receba ofertas exclusivas todos os dias!
+          </p>
+        </div>
+
       </div>
+
 
       <a
         href="https://t.me/+15l4h2v4YzpmM2Mx"
@@ -649,15 +971,20 @@
 
       <div class="footer-column">
 
-        <div class="footer-logo">
+        <div class="footer-brand">
+
+          <div class="footer-shark">🦈</div>
+
           <div class="logo-text">
             <span class="shark">Shark</span>
             <span class="ofertas">Ofertas</span>
           </div>
+
         </div>
 
         <p>
           As melhores ofertas da internet em um só lugar.
+          Entre no nosso grupo e não perca nenhuma promoção!
         </p>
 
       </div>
@@ -689,10 +1016,22 @@
 
 
     <div class="copyright">
-      © 2026 Shark Ofertas. Todos os direitos reservados.
+      © 2026 🦈 Shark Ofertas. Todos os direitos reservados.
     </div>
 
   </footer>
+
+
+  <!-- BOTÃO FLUTUANTE DO TELEGRAM -->
+  <a
+    href="https://t.me/+15l4h2v4YzpmM2Mx"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bot-float"
+    title="Abrir Telegram"
+  >
+    ✈️
+  </a>
 
 </body>
 </html>
