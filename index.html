@@ -3,10 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luminous Perfection</title>
+
+  <title>Shark Ofertas | As Melhores Ofertas</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .logo span {
+      color: #22c55e;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #22c55e;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #d1d5db;
+    }
+
+    .ofertas {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    .titulo {
+      text-align: center;
+      margin-bottom: 35px;
+      font-size: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .produto-imagem {
+      height: 180px;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+    }
+
+    .conteudo {
+      padding: 20px;
+    }
+
+    .conteudo h3 {
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
+
+    .preco-antigo {
+      color: #888;
+      text-decoration: line-through;
+      margin-bottom: 5px;
+    }
+
+    .preco {
+      font-size: 25px;
+      font-weight: bold;
+      color: #16a34a;
+      margin-bottom: 15px;
+    }
+
+    .botao {
+      display: block;
+      background: #22c55e;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      padding: 13px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .botao:hover {
+      background: #16a34a;
+    }
+
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      header {
+        padding: 18px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Luminous Perfection</h1>
-  <p>Bem-vindo!</p>
+
+  <header>
+    <div class="logo">🦈 Shark <span>Ofertas</span></div>
+    <div>🔥 Ofertas selecionadas</div>
+  </header>
+
+  <section class="hero">
+    <h1>As melhores <span>ofertas</span> em um só lugar!</h1>
+    <p>Produtos selecionados com preços imperdíveis para você economizar.</p>
+  </section>
+
+  <main class="ofertas">
+    <h2 class="titulo">🔥 Ofertas em destaque</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="produto-imagem">📱</div>
+        <div class="conteudo">
+          <h3>Produto em Oferta</h3>
+          <p class="preco-antigo">De R$ 199,90</p>
+          <p class="preco">R$ 99,90</p>
+          <a class="botao" href="#" target="_blank">VER OFERTA</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="produto-imagem">🎧</div>
+        <div class="conteudo">
+          <h3>Produto em Oferta</h3>
+          <p class="preco-antigo">De R$ 149,90</p>
+          <p class="preco">R$ 79,90</p>
+          <a class="botao" href="#" target="_blank">VER OFERTA</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="produto-imagem">⌚</div>
+        <div class="conteudo">
+          <h3>Produto em Oferta</h3>
+          <p class="preco-antigo">De R$ 299,90</p>
+          <p class="preco">R$ 159,90</p>
+          <a class="botao" href="#" target="_blank">VER OFERTA</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Shark Ofertas - Todos os direitos reservados.</p>
+  </footer>
+
 </body>
 </html>
