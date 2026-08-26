@@ -1,172 +1,1539 @@
-from PIL import Image
-import base64, io, textwrap, os
-
-img_path = "/mnt/data/Emblema Néon de Ofertas Insanas.png"
-img = Image.open(img_path).convert("RGB")
-# Resize to keep the self-contained HTML reasonably sized while preserving logo quality
-img.thumbnail((700, 700))
-buf = io.BytesIO()
-img.save(buf, format="WEBP", quality=82, method=6)
-b64 = base64.b64encode(buf.getvalue()).decode("ascii")
-
-html = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050914">
-<title>Shark Ofertas | Ofertas Insanas</title>
-<style>
-*{{margin:0;padding:0;box-sizing:border-box}}
-:root{{
-  --blue:#145cff;
-  --blue2:#3d7cff;
-  --dark:#050914;
-  --dark2:#081326;
-  --text:#f5f8ff;
-  --muted:#aebbd0;
-}}
-html{{scroll-behavior:smooth}}
-body{{
-  font-family:Arial,Helvetica,sans-serif;
-  background:radial-gradient(circle at 75% 10%,#102b5d 0,#071326 32%,#050914 68%);
-  color:var(--text);
-  min-height:100vh;
-}}
-header{{
-  min-height:100px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:25px;padding:12px 5%;
-  border-bottom:1px solid rgba(61,124,255,.35);
-  background:rgba(5,9,20,.92);
-  position:sticky;top:0;z-index:10;
-  backdrop-filter:blur(14px);
-}}
-.brand{{display:flex;align-items:center;gap:13px;min-width:230px}}
-.brand img{{
-  width:74px;height:74px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--blue2);
-  box-shadow:0 0 24px rgba(20,92,255,.7);
-}}
-.brand-text{{font-size:26px;font-weight:900;font-style:italic;line-height:.9;letter-spacing:1px}}
-.brand-text b{{display:block;color:white}}
-.brand-text span{{color:var(--blue2)}}
-nav{{display:flex;gap:34px;align-items:center}}
-nav a{{color:#d9e2f2;text-decoration:none;font-weight:800;font-size:14px;letter-spacing:1px}}
-nav a:hover{{color:var(--blue2)}}
-.group-btn{{
-  text-decoration:none;color:white;font-weight:900;letter-spacing:1px;
-  background:linear-gradient(135deg,#3d7cff,#145cff);
-  padding:18px 28px;border-radius:12px;
-  box-shadow:0 10px 30px rgba(20,92,255,.3);
-}}
-.hero{{
-  max-width:1400px;margin:auto;min-height:680px;
-  display:grid;grid-template-columns:1.1fr .9fr;
-  align-items:center;gap:40px;padding:65px 5%;
-}}
-.eyebrow{{color:#8bb5ff;font-weight:900;letter-spacing:4px;font-size:13px;margin-bottom:28px}}
-h1{{font-size:clamp(55px,7vw,108px);line-height:.82;font-style:italic;font-weight:1000;letter-spacing:-3px}}
-h1 .white{{display:block;color:#f5f7fb}}
-h1 .blue{{
-  display:block;color:#3979ff;
-  text-shadow:0 0 35px rgba(20,92,255,.35);
-}}
-h2{{font-size:clamp(26px,3vw,44px);font-style:italic;margin-top:8px}}
-.desc{{font-size:21px;line-height:1.55;color:#bac5d6;max-width:650px;margin:28px 0}}
-.desc strong{{color:#8bb5ff}}
-.actions{{display:flex;gap:15px;flex-wrap:wrap}}
-.primary{{
-  display:inline-block;text-decoration:none;color:#fff;
-  background:linear-gradient(135deg,#3d7cff,#145cff);
-  padding:18px 28px;border-radius:12px;font-weight:900;
-  box-shadow:0 15px 40px rgba(20,92,255,.35);
-}}
-.secondary{{
-  display:inline-block;text-decoration:none;color:#dce8ff;
-  border:1px solid rgba(61,124,255,.55);
-  padding:18px 28px;border-radius:12px;font-weight:900;
-}}
-.visual{{display:flex;justify-content:center;align-items:center}}
-.visual img{{
-  width:min(100%,600px);aspect-ratio:1;object-fit:cover;border-radius:50%;
-  border:3px solid rgba(61,124,255,.9);
-  box-shadow:0 0 35px rgba(20,92,255,.45),0 0 100px rgba(20,92,255,.22);
-}}
-.benefits{{
-  max-width:1300px;margin:0 auto 70px;padding:0 5%;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-}}
-.card{{
-  background:linear-gradient(145deg,rgba(13,31,61,.9),rgba(6,14,29,.95));
-  border:1px solid rgba(61,124,255,.28);border-radius:18px;padding:28px;
-}}
-.icon{{font-size:30px;margin-bottom:14px}}
-.card h3{{font-size:17px;letter-spacing:1px;margin-bottom:8px}}
-.card p{{color:#9faec2;line-height:1.5}}
-footer{{border-top:1px solid rgba(61,124,255,.2);padding:28px;text-align:center;color:#8190a7}}
-@media(max-width:900px){{
-  header{{padding:10px 4%}}
-  nav{{display:none}}
-  .hero{{grid-template-columns:1fr;text-align:center;padding-top:45px}}
-  .visual{{grid-row:1}}
-  .visual img{{width:min(78vw,500px)}}
-  .eyebrow{{margin-bottom:18px}}
-  .desc{{margin-left:auto;margin-right:auto}}
-  .actions{{justify-content:center}}
-  .benefits{{grid-template-columns:1fr}}
-  .group-btn{{padding:14px;font-size:12px}}
-  .brand{{min-width:0}}
-  .brand-text{{font-size:20px}}
-  .brand img{{width:58px;height:58px}}
-}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#050505">
+
+  <title>Shark Ofertas | Ofertas Insanas</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #050505;
+      --black-2: #0a0a0a;
+      --black-3: #111111;
+      --gray: #1c1c1c;
+      --gray-2: #2a2a2a;
+      --white: #ffffff;
+      --white-soft: #d7d7d7;
+      --red: #e50914;
+      --red-2: #ff1e2d;
+      --red-dark: #7d0007;
+      --green: #40d47e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 80% 10%, rgba(229, 9, 20, 0.12), transparent 25%),
+        radial-gradient(circle at 10% 40%, rgba(255, 255, 255, 0.04), transparent 25%),
+        linear-gradient(180deg, #020202 0%, #0a0a0a 48%, #050505 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: rgba(5, 5, 5, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .header-inner {
+      max-width: 1380px;
+      min-height: 88px;
+      margin: auto;
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-logo {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+    }
+
+    .brand-title {
+      line-height: 0.9;
+      font-size: 27px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .brand-title span:first-child {
+      color: #fff;
+      display: block;
+    }
+
+    .brand-title span:last-child {
+      color: var(--red-2);
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    nav a {
+      position: relative;
+      color: #d3d3d3;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      background: var(--red-2);
+      transition: 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .top-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--red-2), var(--red));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9px;
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 0 10px 28px rgba(229, 9, 20, 0.2);
+      transition: 0.2s ease;
+    }
+
+    .top-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(229, 9, 20, 0.32);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 5, 5, 1) 0%,
+          rgba(5, 5, 5, 0.98) 34%,
+          rgba(5, 5, 5, 0.82) 58%,
+          rgba(5, 5, 5, 0.9) 100%
+        );
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 38%, rgba(229, 9, 20, 0.16), transparent 25%),
+        linear-gradient(135deg, transparent 0 40%, rgba(255,255,255,.02) 40.5% 41%, transparent 41.5%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      max-width: 1380px;
+      min-height: 670px;
+      margin: auto;
+      padding: 75px 28px;
+      display: grid;
+      grid-template-columns: 1.03fr 0.97fr;
+      align-items: center;
+      gap: 35px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red-2);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      background: var(--red-2);
+      box-shadow: 0 0 14px rgba(229, 9, 20, 0.6);
+    }
+
+    .hero h1 {
+      font-size: clamp(56px, 7vw, 105px);
+      line-height: 0.84;
+      font-weight: 950;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 .white {
+      display: block;
+      color: #fff;
+    }
+
+    .hero h1 .red {
+      display: block;
+      color: var(--red-2);
+      text-shadow: 0 0 35px rgba(229, 9, 20, 0.2);
+    }
+
+    .hero-subtitle {
+      margin-top: 17px;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      margin-top: 27px;
+      color: #c3c3c3;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hero-description strong {
+      color: var(--red-2);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn-red,
+    .btn-outline {
+      min-height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 25px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      transition: 0.2s ease;
+    }
+
+    .btn-red {
+      color: #fff;
+      background: linear-gradient(135deg, var(--red-2), var(--red));
+      box-shadow: 0 12px 30px rgba(229, 9, 20, 0.24);
+    }
+
+    .btn-red:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(229, 9, 20, 0.34);
+    }
+
+    .btn-outline {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.17);
+      background: rgba(255,255,255,.03);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(229,9,20,.65);
+      color: var(--red-2);
+    }
+
+    /* =========================
+       SHARK VISUAL
+    ========================= */
+
+    .hero-visual {
+      min-height: 550px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .red-ring {
+      position: absolute;
+      width: min(570px, 48vw);
+      height: min(570px, 48vw);
+      border: 2px solid rgba(229, 9, 20, 0.4);
+      border-radius: 50%;
+      box-shadow:
+        0 0 35px rgba(229, 9, 20, 0.13),
+        inset 0 0 35px rgba(229, 9, 20, 0.08);
+    }
+
+    .red-ring::before,
+    .red-ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .red-ring::before {
+      inset: 18px;
+    }
+
+    .red-ring::after {
+      inset: 38px;
+    }
+
+    .shark-large {
+      width: min(590px, 50vw);
+      position: relative;
+      z-index: 3;
+      filter: drop-shadow(0 0 22px rgba(229,9,20,.28));
+    }
+
+    .shark-large .shark-body {
+      fill: #161616;
+      stroke: #f4f4f4;
+      stroke-width: 5;
+    }
+
+    .shark-large .shark-belly {
+      fill: #eaeaea;
+    }
+
+    .shark-large .shark-fin {
+      fill: #0d0d0d;
+      stroke: #f4f4f4;
+      stroke-width: 4;
+    }
+
+    .shark-large .shark-mouth {
+      fill: #050505;
+      stroke: #ffffff;
+      stroke-width: 3;
+    }
+
+    .shark-large .tooth {
+      fill: #ffffff;
+    }
+
+    .shark-large .shark-eye {
+      fill: var(--red-2);
+      stroke: #fff;
+      stroke-width: 3;
+    }
+
+    .shark-large .red-glow {
+      stroke: var(--red-2);
+      stroke-width: 8;
+      fill: none;
+      opacity: .6;
+    }
+
+    /* =========================
+       BENEFITS
+    ========================= */
+
+    .benefits-wrap {
+      max-width: 1380px;
+      margin: -1px auto 0;
+      padding: 0 28px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: linear-gradient(180deg, #111 0%, #0b0b0b 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .benefit {
+      padding: 27px 22px;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+
+    .benefit:last-child {
+      border-right: none;
+    }
+
+    .benefit-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(229,9,20,.65);
+      color: var(--red-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 14px;
+      box-shadow: inset 0 0 18px rgba(229,9,20,.08);
+    }
+
+    .benefit h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .benefit h3 span {
+      color: var(--red-2);
+    }
+
+    .benefit p {
+      color: #888;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .section {
+      max-width: 1380px;
+      margin: auto;
+      padding: 85px 28px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: clamp(35px, 5vw, 52px);
+      line-height: .9;
+      font-weight: 950;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .section-title span {
+      color: var(--red-2);
+    }
+
+    .section-link {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 8px;
+      padding: 12px 17px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #d9d9d9;
+    }
+
+    .section-link:hover {
+      border-color: rgba(229,9,20,.55);
+      color: var(--red-2);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .product {
+      background: linear-gradient(180deg, #101010 0%, #090909 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: 0.22s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      border-color: rgba(229,9,20,.45);
+      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    }
+
+    .product-image {
+      position: relative;
+      height: 225px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(229,9,20,.12), transparent 62%),
+        #0c0c0c;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .discount {
+      position: absolute;
+      top: 11px;
+      left: 11px;
+      z-index: 2;
+      color: #fff;
+      background: linear-gradient(135deg, var(--red-2), var(--red));
+      padding: 7px 9px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .product-art {
+      font-size: 92px;
+      filter: drop-shadow(0 8px 15px rgba(0,0,0,.3));
+    }
+
+    .product-content {
+      padding: 17px;
+    }
+
+    .product h3 {
+      min-height: 40px;
+      font-size: 15px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .old-price {
+      color: #666;
+      font-size: 12px;
+      text-decoration: line-through;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 950;
+      margin-bottom: 15px;
+    }
+
+    .offer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid rgba(229,9,20,.6);
+      border-radius: 7px;
+      color: #fff;
+      background: rgba(229,9,20,.08);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .offer-btn:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* =========================
+       TELEGRAM
+    ========================= */
+
+    .telegram-section {
+      max-width: 1380px;
+      margin: auto;
+      padding: 0 28px 80px;
+    }
+
+    .telegram-box {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 38px;
+      border: 1px solid rgba(229,9,20,.35);
+      border-radius: 14px;
+      background:
+        linear-gradient(90deg, #0d0d0d, #161616);
+    }
+
+    .telegram-box::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      background: rgba(229,9,20,.12);
+      filter: blur(30px);
+    }
+
+    .telegram-box > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .telegram-title {
+      font-size: clamp(25px, 4vw, 38px);
+      font-weight: 950;
+      font-style: italic;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .telegram-title span {
+      color: var(--red-2);
+    }
+
+    .telegram-text {
+      color: #8c8c8c;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      background: #050505;
+    }
+
+    .footer-inner {
+      max-width: 1380px;
+      margin: auto;
+      padding: 52px 28px 28px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 45px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 17px;
+    }
+
+    .footer-logo {
+      width: 58px;
+      height: 58px;
+    }
+
+    .footer-description {
+      max-width: 430px;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-column h3 {
+      font-size: 12px;
+      color: var(--red-2);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 17px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #858585;
+      font-size: 13px;
+      margin-bottom: 11px;
+    }
+
+    .footer-column a:hover {
+      color: #fff;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .social {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(229,9,20,.45);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      color: #fff;
+      transition: .2s ease;
+    }
+
+    .social:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.05);
+      text-align: center;
+      color: #555;
+      padding: 19px 20px;
+      font-size: 11px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 1050px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+      }
+
+      .hero-content {
+        max-width: 760px;
+      }
+
+      .hero-visual {
+        min-height: 430px;
+        order: -1;
+      }
+
+      .red-ring,
+      .shark-large {
+        width: min(520px, 78vw);
+        height: min(520px, 78vw);
+      }
+
+      .benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefit:nth-child(2) {
+        border-right: none;
+      }
+
+      .benefit:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255,255,255,.07);
+      }
+
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        padding: 10px 15px;
+      }
+
+      .brand-logo {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+      }
+
+      .brand-title {
+        font-size: 20px;
+      }
+
+      .top-cta {
+        padding: 12px 13px;
+        font-size: 10px;
+      }
+
+      .hero-grid {
+        padding: 35px 18px 55px;
+      }
+
+      .hero {
+        background:
+          radial-gradient(circle at 80% 30%, rgba(229,9,20,.13), transparent 28%),
+          #050505;
+      }
+
+      .hero-visual {
+        min-height: 310px;
+      }
+
+      .red-ring,
+      .shark-large {
+        width: min(350px, 82vw);
+        height: min(350px, 82vw);
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 16vw, 76px);
+        letter-spacing: -2px;
+      }
+
+      .hero-subtitle {
+        font-size: 29px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn-red,
+      .btn-outline {
+        width: 100%;
+      }
+
+      .benefits-wrap,
+      .section,
+      .telegram-section {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit,
+      .benefit:nth-child(2) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,.07);
+      }
+
+      .benefit:last-child {
+        border-bottom: none;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .product-image {
+        height: 175px;
+      }
+
+      .product-art {
+        font-size: 67px;
+      }
+
+      .product-content {
+        padding: 13px;
+      }
+
+      .product h3 {
+        font-size: 13px;
+      }
+
+      .price {
+        font-size: 19px;
+      }
+
+      .telegram-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 22px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .products {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .product-image {
+        height: 155px;
+      }
+
+      .product-art {
+        font-size: 56px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="brand">
-    <img src="data:image/webp;base64,{b64}" alt="Shark Ofertas">
-    <div class="brand-text"><b>SHARK</b><span>OFERTAS</span></div>
-  </div>
-  <nav>
-    <a href="#inicio">INÍCIO</a>
-    <a href="#ofertas">OFERTAS</a>
-    <a href="#categorias">CATEGORIAS</a>
-    <a href="#contato">CONTATO</a>
-  </nav>
-  <a class="group-btn" href="https://t.me/SEU_GRUPO_AQUI" target="_blank">ENTRAR NO GRUPO</a>
-</header>
 
-<main id="inicio">
-  <section class="hero">
-    <div>
-      <div class="eyebrow">— OFERTAS SELECIONADAS TODOS OS DIAS</div>
-      <h1><span class="white">OFERTAS</span><span class="blue">INSANAS</span></h1>
-      <h2>PARA VOCÊ!</h2>
-      <p class="desc">Os <strong>melhores produtos</strong> com preços que cabem no seu bolso.<br>Achados selecionados para você economizar de verdade!</p>
-      <div class="actions">
-        <a class="primary" href="https://t.me/SEU_GRUPO_AQUI" target="_blank">🔥 VER AS OFERTAS</a>
-        <a class="secondary" href="#ofertas">CONHECER MAIS</a>
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+    <div class="header-inner">
+
+      <a href="#inicio" class="brand">
+
+        <svg class="brand-logo" viewBox="0 0 100 100" aria-label="Shark Ofertas">
+          <circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+
+          <path
+            d="M15 58
+               C27 38 48 28 69 33
+               C83 36 91 45 92 53
+               C85 52 77 54 71 60
+               C63 68 53 74 40 74
+               C30 74 21 68 15 58Z"
+            fill="#202020"
+            stroke="#fff"
+            stroke-width="2"
+          />
+
+          <path
+            d="M58 34 L68 18 L72 37"
+            fill="#101010"
+            stroke="#fff"
+            stroke-width="2"
+          />
+
+          <path
+            d="M30 44 C41 38 56 37 70 42
+               C61 46 52 50 44 57
+               C38 62 33 61 27 57"
+            fill="#e8e8e8"
+          />
+
+          <path
+            d="M64 49
+               C76 49 84 53 89 58
+               C81 63 74 66 64 65
+               C69 60 69 54 64 49Z"
+            fill="#050505"
+            stroke="#fff"
+            stroke-width="2"
+          />
+
+          <polygon points="68,54 72,59 76,54" fill="#fff"/>
+          <polygon points="74,53 78,58 82,54" fill="#fff"/>
+          <polygon points="79,53 83,57 87,55" fill="#fff"/>
+
+          <circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/>
+          <circle cx="78" cy="42" r="1.5" fill="#fff"/>
+
+          <path
+            d="M23 61 L11 72 L28 68"
+            fill="#131313"
+            stroke="#fff"
+            stroke-width="2"
+          />
+        </svg>
+
+        <div class="brand-title">
+          <span>SHARK</span>
+          <span>OFERTAS</span>
+        </div>
+
+      </a>
+
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a
+        class="top-cta"
+        href="https://t.me/OfertasShopeeSharkBot"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ✈️ ENTRAR NO GRUPO
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main id="inicio">
+
+    <section class="hero">
+
+      <div class="hero-grid">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            OFERTAS SELECIONADAS TODOS OS DIAS
+          </div>
+
+          <h1>
+            <span class="white">OFERTAS</span>
+            <span class="red">INSANAS</span>
+          </h1>
+
+          <div class="hero-subtitle">
+            PARA VOCÊ!
+          </div>
+
+          <p class="hero-description">
+            Os <strong>melhores produtos</strong> com preços que cabem no seu bolso.
+            Achados selecionados para você <strong>economizar de verdade!</strong>
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              class="btn-red"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ✈️ VER AS OFERTAS
+            </a>
+
+            <a class="btn-outline" href="#ofertas">
+              CONHECER MAIS →
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="red-ring"></div>
+
+          <svg
+            class="shark-large"
+            viewBox="0 0 700 500"
+            role="img"
+            aria-label="Tubarão Shark Ofertas"
+          >
+
+            <path
+              class="red-glow"
+              d="M80 300 C150 165 310 100 465 130 C570 150 635 205 650 270"
+            />
+
+            <path
+              class="shark-body"
+              d="M55 304
+                 C110 210 230 150 355 148
+                 C456 146 545 166 615 213
+                 C646 234 663 257 665 280
+                 C629 275 600 286 572 307
+                 C530 339 493 371 428 384
+                 C334 404 227 382 154 351
+                 C112 333 79 318 55 304Z"
+            />
+
+            <path
+              class="shark-fin"
+              d="M290 159 L329 56 L381 158"
+            />
+
+            <path
+              class="shark-fin"
+              d="M204 347 L151 424 L251 369"
+            />
+
+            <path
+              class="shark-fin"
+              d="M472 365 L537 424 L504 348"
+            />
+
+            <path
+              class="shark-belly"
+              d="M103 295
+                 C176 245 270 223 374 225
+                 C470 227 553 246 615 278
+                 C587 291 560 310 535 329
+                 C487 365 427 376 356 370
+                 C257 363 171 335 103 295Z"
+            />
+
+            <path
+              class="shark-mouth"
+              d="M485 205
+                 C554 193 619 214 659 273
+                 C616 316 560 328 499 315
+                 C529 290 532 239 485 205Z"
+            />
+
+            <polygon class="tooth" points="521,222 530,252 540,225"/>
+            <polygon class="tooth" points="541,219 551,249 561,222"/>
+            <polygon class="tooth" points="562,219 572,248 582,222"/>
+            <polygon class="tooth" points="583,220 592,249 602,226"/>
+            <polygon class="tooth" points="602,226 613,250 621,232"/>
+
+            <polygon class="tooth" points="527,306 537,279 548,304"/>
+            <polygon class="tooth" points="548,311 559,281 570,309"/>
+            <polygon class="tooth" points="570,311 581,279 591,307"/>
+            <polygon class="tooth" points="592,304 602,278 611,299"/>
+
+            <path
+              d="M399 176
+                 C426 181 448 189 468 202"
+              stroke="#111"
+              stroke-width="18"
+              stroke-linecap="round"
+              fill="none"
+            />
+
+            <circle class="shark-eye" cx="501" cy="191" r="11"/>
+
+            <path
+              d="M520 193
+                 C541 190 555 193 568 198"
+              stroke="#fff"
+              stroke-width="4"
+              stroke-linecap="round"
+              fill="none"
+              opacity=".75"
+            />
+
+          </svg>
+
+        </div>
+
       </div>
-    </div>
-    <div class="visual">
-      <img src="data:image/webp;base64,{b64}" alt="Logo Shark Ofertas Insanas">
-    </div>
-  </section>
 
-  <section class="benefits" id="ofertas">
-    <div class="card"><div class="icon">%</div><h3>DESCONTOS REAIS</h3><p>Promoções e preços selecionados para você economizar.</p></div>
-    <div class="card"><div class="icon">⚡</div><h3>OFERTAS RÁPIDAS</h3><p>As melhores oportunidades antes que acabem.</p></div>
-    <div class="card"><div class="icon">✓</div><h3>COMPRA SEGURA</h3><p>Ofertas organizadas para facilitar sua escolha.</p></div>
-  </section>
-</main>
+    </section>
 
-<footer id="contato">© 2026 SHARK OFERTAS — OFERTAS INSANAS</footer>
+
+    <!-- =========================
+         BENEFITS
+    ========================== -->
+
+    <section class="benefits-wrap" id="vantagens">
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <div class="benefit-icon">%</div>
+          <h3>Descontos <span>Reais</span></h3>
+          <p>Promoções selecionadas para você economizar.</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <h3>Ofertas <span>Rápidas</span></h3>
+          <p>As melhores oportunidades antes que acabem.</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">✓</div>
+          <h3>Compra <span>Segura</span></h3>
+          <p>Ofertas organizadas para facilitar sua escolha.</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">★</div>
+          <h3>Produtos <span>Selecionados</span></h3>
+          <p>Só o que vale a pena, sem enrolação.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+
+    <section class="section" id="ofertas">
+
+      <div class="section-heading">
+
+        <h2 class="section-title">
+          Ofertas em <span>Destaque</span>
+        </h2>
+
+        <a class="section-link" href="#ofertas">
+          Ver todas →
+        </a>
+
+      </div>
+
+
+      <div class="products">
+
+        <article class="product">
+
+          <div class="product-image">
+            <div class="discount">-35%</div>
+            <div class="product-art">🎧</div>
+          </div>
+
+          <div class="product-content">
+            <h3>Fone Bluetooth Pro</h3>
+            <div class="old-price">De R$ 199,90</div>
+            <div class="price">R$ 129,90</div>
+
+            <a
+              class="offer-btn"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Oferta
+            </a>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            <div class="discount">-42%</div>
+            <div class="product-art">⌚</div>
+          </div>
+
+          <div class="product-content">
+            <h3>Smartwatch X8</h3>
+            <div class="old-price">De R$ 349,90</div>
+            <div class="price">R$ 199,90</div>
+
+            <a
+              class="offer-btn"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Oferta
+            </a>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            <div class="discount">-28%</div>
+            <div class="product-art">🎮</div>
+          </div>
+
+          <div class="product-content">
+            <h3>Headset Gamer</h3>
+            <div class="old-price">De R$ 249,90</div>
+            <div class="price">R$ 179,90</div>
+
+            <a
+              class="offer-btn"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Oferta
+            </a>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            <div class="discount">-31%</div>
+            <div class="product-art">🔊</div>
+          </div>
+
+          <div class="product-content">
+            <h3>Caixa de Som Plus</h3>
+            <div class="old-price">De R$ 229,90</div>
+            <div class="price">R$ 159,90</div>
+
+            <a
+              class="offer-btn"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Oferta
+            </a>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            <div class="discount">-40%</div>
+            <div class="product-art">💡</div>
+          </div>
+
+          <div class="product-content">
+            <h3>Fita LED RGB</h3>
+            <div class="old-price">De R$ 149,90</div>
+            <div class="price">R$ 89,90</div>
+
+            <a
+              class="offer-btn"
+              href="https://t.me/OfertasShopeeSharkBot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Oferta
+            </a>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TELEGRAM
+    ========================== -->
+
+    <section class="telegram-section">
+
+      <div class="telegram-box">
+
+        <div>
+          <div class="telegram-title">
+            Receba as ofertas <span>antes de todo mundo</span>
+          </div>
+
+          <div class="telegram-text">
+            Entre no nosso Telegram e acompanhe as melhores oportunidades.
+          </div>
+        </div>
+
+        <a
+          class="btn-red"
+          href="https://t.me/OfertasShopeeSharkBot"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ✈️ ENTRAR AGORA
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer id="contato">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+
+          <svg class="footer-logo" viewBox="0 0 100 100" aria-label="Shark Ofertas">
+            <circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+            <path
+              d="M15 58
+                 C27 38 48 28 69 33
+                 C83 36 91 45 92 53
+                 C85 52 77 54 71 60
+                 C63 68 53 74 40 74
+                 C30 74 21 68 15 58Z"
+              fill="#202020"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <path
+              d="M58 34 L68 18 L72 37"
+              fill="#101010"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <path
+              d="M30 44 C41 38 56 37 70 42
+                 C61 46 52 50 44 57
+                 C38 62 33 61 27 57"
+              fill="#e8e8e8"
+            />
+            <path
+              d="M64 49
+                 C76 49 84 53 89 58
+                 C81 63 74 66 64 65
+                 C69 60 69 54 64 49Z"
+              fill="#050505"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <polygon points="68,54 72,59 76,54" fill="#fff"/>
+            <polygon points="74,53 78,58 82,54" fill="#fff"/>
+            <polygon points="79,53 83,57 87,55" fill="#fff"/>
+            <circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/>
+            <circle cx="78" cy="42" r="1.5" fill="#fff"/>
+          </svg>
+
+          <div class="brand-title">
+            <span>SHARK</span>
+            <span>OFERTAS</span>
+          </div>
+
+        </div>
+
+        <p class="footer-description">
+          Aqui você encontra as melhores ofertas da internet,
+          com descontos reais e oportunidades selecionadas.
+        </p>
+
+        <div class="socials">
+
+          <a
+            class="social"
+            href="https://t.me/OfertasShopeeSharkBot"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
+            ✈
+          </a>
+
+          <a
+            class="social"
+            href="#"
+            aria-label="Instagram"
+          >
+            ◎
+          </a>
+
+          <a
+            class="social"
+            href="#"
+            aria-label="WhatsApp"
+          >
+            ◉
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Links Rápidos</h3>
+
+        <a href="#inicio">Início</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#categorias">Categorias</a>
+
+      </div>
+
+
+      <div class="footer-column" id="categorias">
+
+        <h3>Categorias</h3>
+
+        <a href="#ofertas">Eletrônicos</a>
+        <a href="#ofertas">Casa e Cozinha</a>
+        <a href="#ofertas">Beleza</a>
+        <a href="#ofertas">Esportes</a>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © 2026 SHARK OFERTAS — OFERTAS INSANAS. Todos os direitos reservados.
+    </div>
+
+  </footer>
+
 </body>
-</html>"""
-
-out = "/mnt/data/index.html"
-with open(out, "w", encoding="utf-8") as f:
-    f.write(html)
-
-len(html), out
+</html>
