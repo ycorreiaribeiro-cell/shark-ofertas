@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#050505">
-
-  <title>Shark Ofertas | Ofertas Insanas</title>
+  <title>Shark Ofertas | Vitrine de Ofertas</title>
+  <meta
+    name="description"
+    content="As melhores ofertas e achados para você economizar."
+  >
 
   <style>
     * {
@@ -19,14 +21,18 @@
       --black: #050505;
       --black-2: #0a0a0a;
       --black-3: #111111;
-      --gray: #1c1c1c;
-      --gray-2: #2a2a2a;
+      --gray: #1b1b1b;
+      --gray-2: #292929;
+      --gray-3: #777777;
+
       --white: #ffffff;
       --white-soft: #d7d7d7;
+
       --red: #e50914;
-      --red-2: #ff1e2d;
-      --red-dark: #7d0007;
-      --green: #40d47e;
+      --red-light: #ff2433;
+      --red-dark: #8f0008;
+
+      --green: #41dc81;
     }
 
     html {
@@ -34,13 +40,55 @@
     }
 
     body {
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--white);
+
       background:
-        radial-gradient(circle at 80% 10%, rgba(229, 9, 20, 0.12), transparent 25%),
-        radial-gradient(circle at 10% 40%, rgba(255, 255, 255, 0.04), transparent 25%),
-        linear-gradient(180deg, #020202 0%, #0a0a0a 48%, #050505 100%);
-      overflow-x: hidden;
+        radial-gradient(
+          circle at 85% 0%,
+          rgba(229, 9, 20, 0.11),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 10% 30%,
+          rgba(255, 255, 255, 0.035),
+          transparent 22%
+        ),
+        linear-gradient(
+          180deg,
+          #030303 0%,
+          #080808 45%,
+          #050505 100%
+        );
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px
+        );
+
+      background-size: 42px 42px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 75%
+        );
     }
 
     a {
@@ -49,90 +97,112 @@
     }
 
     button,
-    a {
-      -webkit-tap-highlight-color: transparent;
+    input {
+      font: inherit;
     }
 
-    /* =========================
+    /* =========================================
        HEADER
-    ========================= */
+    ========================================= */
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
+
       width: 100%;
-      background: rgba(5, 5, 5, 0.94);
-      backdrop-filter: blur(14px);
+
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(16px);
+
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     .header-inner {
-      max-width: 1380px;
+      width: min(1400px, 94%);
       min-height: 88px;
+
       margin: auto;
-      padding: 12px 28px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+
+      gap: 24px;
     }
+
+    /* LOGO */
 
     .brand {
       display: flex;
       align-items: center;
+
       gap: 12px;
+
       min-width: max-content;
     }
 
     .brand-logo {
       width: 58px;
       height: 58px;
-      flex: 0 0 58px;
+
+      flex-shrink: 0;
     }
 
-    .brand-title {
+    .brand-name {
+      font-size: 25px;
       line-height: 0.9;
-      font-size: 27px;
-      font-weight: 900;
+
+      font-weight: 950;
       font-style: italic;
-      letter-spacing: -1px;
+
       text-transform: uppercase;
+      letter-spacing: -1px;
     }
 
-    .brand-title span:first-child {
+    .brand-name span:first-child {
+      display: block;
       color: #fff;
-      display: block;
     }
 
-    .brand-title span:last-child {
-      color: var(--red-2);
+    .brand-name span:last-child {
       display: block;
+      color: var(--red-light);
     }
+
+    /* NAV */
 
     nav {
       display: flex;
       align-items: center;
-      gap: 34px;
+      gap: 30px;
     }
 
     nav a {
       position: relative;
-      color: #d3d3d3;
-      font-size: 13px;
-      font-weight: 800;
+
+      color: #d0d0d0;
+
+      font-size: 12px;
+      font-weight: 900;
+
       text-transform: uppercase;
+
       transition: 0.2s ease;
     }
 
     nav a::after {
       content: "";
+
       position: absolute;
       left: 0;
       bottom: -9px;
+
       width: 0;
       height: 2px;
-      background: var(--red-2);
+
+      background: var(--red-light);
+
       transition: 0.2s ease;
     }
 
@@ -144,574 +214,830 @@
       width: 100%;
     }
 
-    .top-cta {
+    .header-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      background: linear-gradient(135deg, var(--red-2), var(--red));
-      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      gap: 8px;
+
+      padding: 14px 19px;
+
       border-radius: 9px;
-      padding: 14px 20px;
-      font-size: 12px;
+
+      font-size: 11px;
       font-weight: 900;
+
       text-transform: uppercase;
-      box-shadow: 0 10px 28px rgba(229, 9, 20, 0.2);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-light),
+          var(--red)
+        );
+
+      border: 1px solid rgba(255,255,255,.12);
+
+      box-shadow:
+        0 10px 25px rgba(229, 9, 20, .20);
+
       transition: 0.2s ease;
     }
 
-    .top-cta:hover {
+    .header-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(229, 9, 20, 0.32);
+
+      box-shadow:
+        0 15px 32px rgba(229, 9, 20, .30);
     }
 
-    /* =========================
+    /* =========================================
        HERO
-    ========================= */
+    ========================================= */
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background:
-        linear-gradient(
-          90deg,
-          rgba(5, 5, 5, 1) 0%,
-          rgba(5, 5, 5, 0.98) 34%,
-          rgba(5, 5, 5, 0.82) 58%,
-          rgba(5, 5, 5, 0.9) 100%
-        );
-    }
+      width: min(1400px, 94%);
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 78% 38%, rgba(229, 9, 20, 0.16), transparent 25%),
-        linear-gradient(135deg, transparent 0 40%, rgba(255,255,255,.02) 40.5% 41%, transparent 41.5%);
-      pointer-events: none;
+      margin: auto;
+
+      padding: 75px 0 55px;
     }
 
     .hero-grid {
-      max-width: 1380px;
-      min-height: 670px;
-      margin: auto;
-      padding: 75px 28px;
       display: grid;
-      grid-template-columns: 1.03fr 0.97fr;
-      align-items: center;
-      gap: 35px;
-      position: relative;
-      z-index: 2;
-    }
 
-    .hero-content {
-      max-width: 680px;
+      grid-template-columns: 1.1fr .9fr;
+
+      align-items: center;
+
+      gap: 45px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--red-2);
-      font-size: 12px;
+
+      gap: 9px;
+
+      color: var(--red-light);
+
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 3px;
+
       text-transform: uppercase;
-      margin-bottom: 22px;
+      letter-spacing: 2.8px;
+
+      margin-bottom: 18px;
     }
 
     .eyebrow::before {
       content: "";
-      width: 38px;
+
+      width: 34px;
       height: 3px;
-      background: var(--red-2);
-      box-shadow: 0 0 14px rgba(229, 9, 20, 0.6);
+
+      background: var(--red);
+
+      box-shadow:
+        0 0 15px rgba(229, 9, 20, .5);
     }
 
-    .hero h1 {
-      font-size: clamp(56px, 7vw, 105px);
-      line-height: 0.84;
-      font-weight: 950;
+    .hero-title {
+      font-size: clamp(52px, 7vw, 97px);
+
+      line-height: .84;
+
       font-style: italic;
+      font-weight: 950;
+
       text-transform: uppercase;
+
       letter-spacing: -4px;
     }
 
-    .hero h1 .white {
+    .hero-title .white {
       display: block;
       color: #fff;
     }
 
-    .hero h1 .red {
+    .hero-title .red {
       display: block;
-      color: var(--red-2);
-      text-shadow: 0 0 35px rgba(229, 9, 20, 0.2);
+
+      color: var(--red-light);
+
+      text-shadow:
+        0 0 28px rgba(229, 9, 20, .18);
     }
 
     .hero-subtitle {
-      margin-top: 17px;
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1;
+      margin-top: 16px;
+
+      color: #ececec;
+
+      font-size: clamp(24px, 3vw, 39px);
+
       font-weight: 900;
       font-style: italic;
+
       text-transform: uppercase;
     }
 
-    .hero-description {
-      max-width: 620px;
-      margin-top: 27px;
-      color: #c3c3c3;
-      font-size: 18px;
-      line-height: 1.6;
+    .hero-text {
+      max-width: 630px;
+
+      margin-top: 24px;
+
+      color: #a9a9a9;
+
+      font-size: 17px;
+
+      line-height: 1.65;
     }
 
-    .hero-description strong {
-      color: var(--red-2);
+    .hero-text strong {
+      color: var(--red-light);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 32px;
+
+      gap: 13px;
+
+      margin-top: 28px;
     }
 
-    .btn-red,
-    .btn-outline {
-      min-height: 54px;
+    .btn-primary,
+    .btn-secondary {
+      min-height: 52px;
+
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
-      padding: 0 25px;
+
+      gap: 8px;
+
+      padding: 0 23px;
+
       border-radius: 9px;
-      font-size: 13px;
+
+      font-size: 12px;
+
       font-weight: 900;
+
       text-transform: uppercase;
-      letter-spacing: .4px;
-      transition: 0.2s ease;
+
+      transition: .2s ease;
     }
 
-    .btn-red {
+    .btn-primary {
       color: #fff;
-      background: linear-gradient(135deg, var(--red-2), var(--red));
-      box-shadow: 0 12px 30px rgba(229, 9, 20, 0.24);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-light),
+          var(--red)
+        );
+
+      box-shadow:
+        0 14px 32px rgba(229, 9, 20, .23);
     }
 
-    .btn-red:hover {
+    .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 36px rgba(229, 9, 20, 0.34);
+
+      box-shadow:
+        0 18px 38px rgba(229, 9, 20, .35);
     }
 
-    .btn-outline {
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.17);
-      background: rgba(255,255,255,.03);
+    .btn-secondary {
+      color: #eee;
+
+      background: #101010;
+
+      border: 1px solid rgba(255,255,255,.13);
     }
 
-    .btn-outline:hover {
-      border-color: rgba(229,9,20,.65);
-      color: var(--red-2);
+    .btn-secondary:hover {
+      color: var(--red-light);
+
+      border-color:
+        rgba(229,9,20,.55);
     }
 
-    /* =========================
-       SHARK VISUAL
-    ========================= */
+    /* HERO VISUAL */
 
     .hero-visual {
-      min-height: 550px;
       position: relative;
+
+      min-height: 410px;
+
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .red-ring {
-      position: absolute;
-      width: min(570px, 48vw);
-      height: min(570px, 48vw);
-      border: 2px solid rgba(229, 9, 20, 0.4);
+    .hero-circle {
+      width: min(390px, 80vw);
+      height: min(390px, 80vw);
+
       border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          #2a2a2a 0%,
+          #111 44%,
+          #070707 72%,
+          #030303 100%
+        );
+
+      border:
+        2px solid rgba(229, 9, 20, .6);
+
       box-shadow:
-        0 0 35px rgba(229, 9, 20, 0.13),
-        inset 0 0 35px rgba(229, 9, 20, 0.08);
-    }
+        0 0 0 15px rgba(229,9,20,.03),
+        0 0 45px rgba(229,9,20,.14);
 
-    .red-ring::before,
-    .red-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .red-ring::before {
-      inset: 18px;
-    }
-
-    .red-ring::after {
-      inset: 38px;
-    }
-
-    .shark-large {
-      width: min(590px, 50vw);
-      position: relative;
-      z-index: 3;
-      filter: drop-shadow(0 0 22px rgba(229,9,20,.28));
-    }
-
-    .shark-large .shark-body {
-      fill: #161616;
-      stroke: #f4f4f4;
-      stroke-width: 5;
-    }
-
-    .shark-large .shark-belly {
-      fill: #eaeaea;
-    }
-
-    .shark-large .shark-fin {
-      fill: #0d0d0d;
-      stroke: #f4f4f4;
-      stroke-width: 4;
-    }
-
-    .shark-large .shark-mouth {
-      fill: #050505;
-      stroke: #ffffff;
-      stroke-width: 3;
-    }
-
-    .shark-large .tooth {
-      fill: #ffffff;
-    }
-
-    .shark-large .shark-eye {
-      fill: var(--red-2);
-      stroke: #fff;
-      stroke-width: 3;
-    }
-
-    .shark-large .red-glow {
-      stroke: var(--red-2);
-      stroke-width: 8;
-      fill: none;
-      opacity: .6;
-    }
-
-    /* =========================
-       BENEFITS
-    ========================= */
-
-    .benefits-wrap {
-      max-width: 1380px;
-      margin: -1px auto 0;
-      padding: 0 28px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: linear-gradient(180deg, #111 0%, #0b0b0b 100%);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35);
-    }
-
-    .benefit {
-      padding: 27px 22px;
-      border-right: 1px solid rgba(255,255,255,.07);
-    }
-
-    .benefit:last-child {
-      border-right: none;
-    }
-
-    .benefit-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid rgba(229,9,20,.65);
-      color: var(--red-2);
       display: flex;
+
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      font-weight: 900;
-      margin-bottom: 14px;
-      box-shadow: inset 0 0 18px rgba(229,9,20,.08);
     }
 
-    .benefit h3 {
-      font-size: 14px;
-      text-transform: uppercase;
-      margin-bottom: 7px;
+    .hero-circle::before,
+    .hero-circle::after {
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border: 1px solid
+        rgba(255,255,255,.06);
     }
 
-    .benefit h3 span {
-      color: var(--red-2);
+    .hero-circle::before {
+      width: 330px;
+      height: 330px;
     }
 
-    .benefit p {
-      color: #888;
-      font-size: 12px;
-      line-height: 1.5;
+    .hero-circle::after {
+      width: 280px;
+      height: 280px;
+
+      border-color:
+        rgba(229,9,20,.12);
     }
 
-    /* =========================
-       PRODUCTS
-    ========================= */
+    .hero-shark {
+      width: 310px;
 
-    .section {
-      max-width: 1380px;
+      position: relative;
+      z-index: 2;
+
+      filter:
+        drop-shadow(
+          0 15px 22px rgba(0,0,0,.5)
+        );
+    }
+
+    /* =========================================
+       CATEGORY BAR
+    ========================================= */
+
+    .category-section {
+      width: min(1400px, 94%);
+
       margin: auto;
-      padding: 85px 28px;
+
+      padding: 18px 0 65px;
+    }
+
+    .category-title {
+      font-size: 13px;
+
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      color: #aaa;
+
+      margin-bottom: 14px;
+    }
+
+    .categories {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .category {
+      padding: 12px 17px;
+
+      color: #d9d9d9;
+
+      background: #101010;
+
+      border: 1px solid
+        rgba(255,255,255,.08);
+
+      border-radius: 999px;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition: .2s ease;
+    }
+
+    .category:hover,
+    .category.active {
+      color: #fff;
+
+      border-color:
+        rgba(229,9,20,.65);
+
+      background:
+        rgba(229,9,20,.08);
+    }
+
+    /* =========================================
+       PRODUCTS SECTION
+    ========================================= */
+
+    .products-section {
+      width: min(1400px, 94%);
+
+      margin: auto;
+
+      padding: 0 0 85px;
     }
 
     .section-heading {
       display: flex;
+
       align-items: flex-end;
+
       justify-content: space-between;
+
       gap: 20px;
-      margin-bottom: 32px;
+
+      margin-bottom: 30px;
     }
 
     .section-title {
-      font-size: clamp(35px, 5vw, 52px);
-      line-height: .9;
+      font-size: clamp(34px, 4vw, 51px);
+
       font-weight: 950;
       font-style: italic;
+
+      line-height: .9;
+
       text-transform: uppercase;
+
       letter-spacing: -2px;
     }
 
     .section-title span {
-      color: var(--red-2);
+      color: var(--red-light);
     }
 
-    .section-link {
-      border: 1px solid rgba(255,255,255,.13);
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 250px;
+
+      height: 44px;
+
+      padding: 0 15px;
+
+      color: #fff;
+
+      background: #0d0d0d;
+
+      border:
+        1px solid rgba(255,255,255,.10);
+
       border-radius: 8px;
-      padding: 12px 17px;
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #d9d9d9;
+
+      outline: none;
+
+      font-size: 12px;
     }
 
-    .section-link:hover {
-      border-color: rgba(229,9,20,.55);
-      color: var(--red-2);
+    .search-box input:focus {
+      border-color:
+        rgba(229,9,20,.55);
     }
+
+    /* PRODUCTS */
 
     .products {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+      gap: 17px;
     }
 
     .product {
-      background: linear-gradient(180deg, #101010 0%, #090909 100%);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
       overflow: hidden;
-      transition: 0.22s ease;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #111 0%,
+          #090909 100%
+        );
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
     }
 
     .product:hover {
-      transform: translateY(-5px);
-      border-color: rgba(229,9,20,.45);
-      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+      transform: translateY(-6px);
+
+      border-color:
+        rgba(229,9,20,.42);
+
+      box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
     }
 
     .product-image {
       position: relative;
-      height: 225px;
+
+      height: 235px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       background:
-        radial-gradient(circle at center, rgba(229,9,20,.12), transparent 62%),
+        radial-gradient(
+          circle at center,
+          rgba(229,9,20,.10),
+          transparent 62%
+        ),
         #0c0c0c;
-      border-bottom: 1px solid rgba(255,255,255,.05);
     }
 
     .discount {
       position: absolute;
-      top: 11px;
-      left: 11px;
+
+      left: 12px;
+      top: 12px;
+
       z-index: 2;
-      color: #fff;
-      background: linear-gradient(135deg, var(--red-2), var(--red));
+
       padding: 7px 9px;
+
       border-radius: 6px;
+
+      color: #fff;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-light),
+          var(--red)
+        );
+
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 950;
+
+      text-transform: uppercase;
     }
 
-    .product-art {
-      font-size: 92px;
-      filter: drop-shadow(0 8px 15px rgba(0,0,0,.3));
+    .favorite {
+      position: absolute;
+
+      right: 12px;
+      top: 12px;
+
+      width: 31px;
+      height: 31px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #d2d2d2;
+
+      background:
+        rgba(0,0,0,.55);
+
+      border:
+        1px solid rgba(255,255,255,.10);
+
+      font-size: 15px;
+    }
+
+    .product-emoji {
+      font-size: 86px;
+
+      filter:
+        drop-shadow(
+          0 14px 18px rgba(0,0,0,.42)
+        );
     }
 
     .product-content {
       padding: 17px;
     }
 
+    .product-tag {
+      display: inline-block;
+
+      color: var(--red-light);
+
+      font-size: 9px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      margin-bottom: 8px;
+    }
+
     .product h3 {
-      min-height: 40px;
-      font-size: 15px;
+      min-height: 42px;
+
+      font-size: 16px;
+
       line-height: 1.3;
-      margin-bottom: 12px;
+
+      margin-bottom: 10px;
     }
 
     .old-price {
-      color: #666;
+      color: #646464;
+
       font-size: 12px;
+
       text-decoration: line-through;
-      margin-bottom: 5px;
+
+      margin-bottom: 4px;
     }
 
     .price {
       color: var(--green);
-      font-size: 22px;
+
+      font-size: 23px;
+
       font-weight: 950;
-      margin-bottom: 15px;
+
+      margin-bottom: 14px;
     }
 
-    .offer-btn {
+    .offer-button {
+      width: 100%;
+
+      min-height: 43px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      width: 100%;
-      min-height: 42px;
-      border: 1px solid rgba(229,9,20,.6);
+
       border-radius: 7px;
+
       color: #fff;
-      background: rgba(229,9,20,.08);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-light),
+          var(--red)
+        );
+
+      border: 1px solid
+        rgba(255,255,255,.08);
+
       font-size: 11px;
+
       font-weight: 900;
+
       text-transform: uppercase;
+
       transition: .2s ease;
     }
 
-    .offer-btn:hover {
-      background: var(--red);
-      border-color: var(--red);
+    .offer-button:hover {
+      filter: brightness(1.08);
     }
 
-    /* =========================
+    /* =========================================
+       MORE OFFERS
+    ========================================= */
+
+    .more-section {
+      width: min(1400px, 94%);
+
+      margin: auto;
+
+      padding: 0 0 80px;
+    }
+
+    .more-box {
+      padding: 37px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 25px;
+
+      border-radius: 14px;
+
+      border:
+        1px solid rgba(229,9,20,.27);
+
+      background:
+        linear-gradient(
+          105deg,
+          #0c0c0c,
+          #171717
+        );
+    }
+
+    .more-title {
+      font-size: clamp(23px, 3vw, 35px);
+
+      font-weight: 950;
+      font-style: italic;
+
+      text-transform: uppercase;
+    }
+
+    .more-title span {
+      color: var(--red-light);
+    }
+
+    .more-text {
+      margin-top: 7px;
+
+      color: #858585;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    /* =========================================
        TELEGRAM
-    ========================= */
+    ========================================= */
 
     .telegram-section {
-      max-width: 1380px;
+      width: min(1400px, 94%);
+
       margin: auto;
-      padding: 0 28px 80px;
+
+      padding: 0 0 80px;
     }
 
     .telegram-box {
-      position: relative;
-      overflow: hidden;
+      padding: 35px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 20px;
-      padding: 38px;
-      border: 1px solid rgba(229,9,20,.35);
+
       border-radius: 14px;
+
       background:
-        linear-gradient(90deg, #0d0d0d, #161616);
-    }
+        linear-gradient(
+          105deg,
+          #0a0a0a,
+          #131313
+        );
 
-    .telegram-box::after {
-      content: "";
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      right: -120px;
-      top: -120px;
-      border-radius: 50%;
-      background: rgba(229,9,20,.12);
-      filter: blur(30px);
-    }
-
-    .telegram-box > * {
-      position: relative;
-      z-index: 2;
+      border:
+        1px solid rgba(255,255,255,.09);
     }
 
     .telegram-title {
-      font-size: clamp(25px, 4vw, 38px);
+      font-size: clamp(23px, 3vw, 35px);
+
       font-weight: 950;
       font-style: italic;
+
       text-transform: uppercase;
-      margin-bottom: 8px;
     }
 
     .telegram-title span {
-      color: var(--red-2);
+      color: var(--red-light);
     }
 
     .telegram-text {
-      color: #8c8c8c;
-      font-size: 14px;
+      margin-top: 7px;
+
+      color: #858585;
+
+      font-size: 13px;
     }
 
-    /* =========================
+    /* =========================================
        FOOTER
-    ========================= */
+    ========================================= */
 
     footer {
-      border-top: 1px solid rgba(255,255,255,.07);
-      background: #050505;
+      border-top:
+        1px solid rgba(255,255,255,.07);
+
+      background: #040404;
     }
 
     .footer-inner {
-      max-width: 1380px;
+      width: min(1400px, 94%);
+
       margin: auto;
-      padding: 52px 28px 28px;
+
+      padding: 50px 0 30px;
+
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
+
+      grid-template-columns:
+        1.5fr 1fr 1fr;
+
       gap: 45px;
     }
 
     .footer-brand {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
-      margin-bottom: 17px;
+
+      margin-bottom: 16px;
     }
 
     .footer-logo {
-      width: 58px;
-      height: 58px;
+      width: 57px;
+      height: 57px;
     }
 
     .footer-description {
       max-width: 430px;
-      color: #777;
+
+      color: #707070;
+
       font-size: 13px;
+
       line-height: 1.7;
     }
 
     .footer-column h3 {
+      color: var(--red-light);
+
       font-size: 12px;
-      color: var(--red-2);
+
+      font-weight: 900;
+
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+
       margin-bottom: 17px;
     }
 
     .footer-column a {
       display: block;
-      color: #858585;
+
+      color: #818181;
+
       font-size: 13px;
+
       margin-bottom: 11px;
+
+      transition: .2s ease;
     }
 
     .footer-column a:hover {
@@ -720,53 +1046,64 @@
 
     .socials {
       display: flex;
-      gap: 10px;
+
+      gap: 9px;
+
       margin-top: 18px;
     }
 
     .social {
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(229,9,20,.45);
-      border-radius: 50%;
+      width: 39px;
+      height: 39px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 900;
+
+      border-radius: 50%;
+
+      border:
+        1px solid rgba(229,9,20,.40);
+
       color: #fff;
+
+      font-size: 13px;
+      font-weight: 900;
+
       transition: .2s ease;
     }
 
     .social:hover {
       background: var(--red);
+
       border-color: var(--red);
     }
 
     .copyright {
-      border-top: 1px solid rgba(255,255,255,.05);
-      text-align: center;
-      color: #555;
+      border-top:
+        1px solid rgba(255,255,255,.05);
+
       padding: 19px 20px;
+
+      text-align: center;
+
+      color: #4e4e4e;
+
       font-size: 11px;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1150px) {
       nav {
         display: none;
       }
 
       .hero-grid {
         grid-template-columns: 1fr;
-        padding-top: 45px;
-      }
-
-      .hero-content {
-        max-width: 760px;
       }
 
       .hero-visual {
@@ -774,166 +1111,124 @@
         order: -1;
       }
 
-      .red-ring,
-      .shark-large {
-        width: min(520px, 78vw);
-        height: min(520px, 78vw);
-      }
-
-      .benefits {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .benefit:nth-child(2) {
-        border-right: none;
-      }
-
-      .benefit:nth-child(-n + 2) {
-        border-bottom: 1px solid rgba(255,255,255,.07);
-      }
-
       .products {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 760px) {
       .header-inner {
-        padding: 10px 15px;
+        min-height: 76px;
       }
 
       .brand-logo {
         width: 48px;
         height: 48px;
-        flex-basis: 48px;
       }
 
-      .brand-title {
+      .brand-name {
         font-size: 20px;
       }
 
-      .top-cta {
-        padding: 12px 13px;
-        font-size: 10px;
-      }
-
-      .hero-grid {
-        padding: 35px 18px 55px;
+      .header-button {
+        padding: 11px 13px;
+        font-size: 9px;
       }
 
       .hero {
-        background:
-          radial-gradient(circle at 80% 30%, rgba(229,9,20,.13), transparent 28%),
-          #050505;
+        padding-top: 42px;
+      }
+
+      .hero-grid {
+        gap: 18px;
       }
 
       .hero-visual {
-        min-height: 310px;
+        min-height: 320px;
       }
 
-      .red-ring,
-      .shark-large {
-        width: min(350px, 82vw);
-        height: min(350px, 82vw);
+      .hero-circle {
+        width: min(310px, 78vw);
+        height: min(310px, 78vw);
       }
 
-      .hero h1 {
-        font-size: clamp(48px, 16vw, 76px);
+      .hero-circle::before {
+        width: 270px;
+        height: 270px;
+      }
+
+      .hero-circle::after {
+        width: 230px;
+        height: 230px;
+      }
+
+      .hero-shark {
+        width: 240px;
+      }
+
+      .hero-title {
         letter-spacing: -2px;
-      }
-
-      .hero-subtitle {
-        font-size: 29px;
-      }
-
-      .hero-description {
-        font-size: 16px;
       }
 
       .hero-actions {
         flex-direction: column;
       }
 
-      .btn-red,
-      .btn-outline {
+      .btn-primary,
+      .btn-secondary {
         width: 100%;
       }
 
-      .benefits-wrap,
-      .section,
-      .telegram-section {
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      .benefits {
-        grid-template-columns: 1fr;
-      }
-
-      .benefit,
-      .benefit:nth-child(2) {
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,.07);
-      }
-
-      .benefit:last-child {
-        border-bottom: none;
-      }
-
       .section-heading {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .search-box input {
+        width: 100%;
       }
 
       .products {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
       }
 
       .product-image {
-        height: 175px;
+        height: 180px;
       }
 
-      .product-art {
-        font-size: 67px;
+      .product-emoji {
+        font-size: 65px;
       }
 
-      .product-content {
-        padding: 13px;
-      }
-
-      .product h3 {
-        font-size: 13px;
-      }
-
-      .price {
-        font-size: 19px;
-      }
-
+      .more-box,
       .telegram-box {
         flex-direction: column;
         align-items: flex-start;
-        padding: 28px 22px;
+      }
+
+      .more-box .btn-primary,
+      .telegram-box .btn-primary {
+        width: 100%;
       }
 
       .footer-inner {
         grid-template-columns: 1fr;
-        padding-left: 20px;
-        padding-right: 20px;
       }
     }
 
     @media (max-width: 430px) {
       .products {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       .product-image {
-        height: 155px;
-      }
-
-      .product-art {
-        font-size: 56px;
+        height: 210px;
       }
     }
   </style>
@@ -941,17 +1236,30 @@
 
 <body>
 
-  <!-- =========================
+  <!-- ========================================
        HEADER
-  ========================== -->
+  ========================================= -->
 
   <header>
+
     <div class="header-inner">
 
       <a href="#inicio" class="brand">
 
-        <svg class="brand-logo" viewBox="0 0 100 100" aria-label="Shark Ofertas">
-          <circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+        <svg
+          class="brand-logo"
+          viewBox="0 0 100 100"
+          aria-label="Shark Ofertas"
+        >
+
+          <circle
+            cx="50"
+            cy="50"
+            r="46"
+            fill="#090909"
+            stroke="#e50914"
+            stroke-width="3"
+          />
 
           <path
             d="M15 58
@@ -973,7 +1281,8 @@
           />
 
           <path
-            d="M30 44 C41 38 56 37 70 42
+            d="M30 44
+               C41 38 56 37 70 42
                C61 46 52 50 44 57
                C38 62 33 61 27 57"
             fill="#e8e8e8"
@@ -989,52 +1298,72 @@
             stroke-width="2"
           />
 
-          <polygon points="68,54 72,59 76,54" fill="#fff"/>
-          <polygon points="74,53 78,58 82,54" fill="#fff"/>
-          <polygon points="79,53 83,57 87,55" fill="#fff"/>
-
-          <circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/>
-          <circle cx="78" cy="42" r="1.5" fill="#fff"/>
-
-          <path
-            d="M23 61 L11 72 L28 68"
-            fill="#131313"
-            stroke="#fff"
-            stroke-width="2"
+          <polygon
+            points="68,54 72,59 76,54"
+            fill="#fff"
           />
+
+          <polygon
+            points="74,53 78,58 82,54"
+            fill="#fff"
+          />
+
+          <polygon
+            points="79,53 83,57 87,55"
+            fill="#fff"
+          />
+
+          <circle
+            cx="77"
+            cy="43"
+            r="4.5"
+            fill="#ff1e2d"
+          />
+
+          <circle
+            cx="78"
+            cy="42"
+            r="1.5"
+            fill="#fff"
+          />
+
         </svg>
 
-        <div class="brand-title">
+        <div class="brand-name">
           <span>SHARK</span>
           <span>OFERTAS</span>
         </div>
 
       </a>
 
+
       <nav>
+
         <a href="#inicio">Início</a>
         <a href="#ofertas">Ofertas</a>
-        <a href="#vantagens">Vantagens</a>
         <a href="#categorias">Categorias</a>
-        <a href="#contato">Contato</a>
+        <a href="#mais-vendidos">Mais Vendidos</a>
+
       </nav>
 
+
       <a
-        class="top-cta"
-        href="https://t.me/OfertasShopeeSharkBot"
+        class="header-button"
+        href="https://t.me/+15l4h2v4YzpmM2Mx"
         target="_blank"
         rel="noopener noreferrer"
       >
-        ✈️ ENTRAR NO GRUPO
+        ✈️ GRUPO VIP
       </a>
 
     </div>
+
   </header>
 
 
-  <!-- =========================
+  <!-- ========================================
        HERO
-  ========================== -->
+  ========================================= -->
 
   <main id="inicio">
 
@@ -1042,39 +1371,58 @@
 
       <div class="hero-grid">
 
-        <div class="hero-content">
+
+        <div>
 
           <div class="eyebrow">
             OFERTAS SELECIONADAS TODOS OS DIAS
           </div>
 
-          <h1>
-            <span class="white">OFERTAS</span>
-            <span class="red">INSANAS</span>
+
+          <h1 class="hero-title">
+
+            <span class="white">
+              OFERTAS
+            </span>
+
+            <span class="red">
+              INSANAS
+            </span>
+
           </h1>
+
 
           <div class="hero-subtitle">
             PARA VOCÊ!
           </div>
 
-          <p class="hero-description">
-            Os <strong>melhores produtos</strong> com preços que cabem no seu bolso.
-            Achados selecionados para você <strong>economizar de verdade!</strong>
+
+          <p class="hero-text">
+            Encontre
+            <strong>ofertas de verdade</strong>,
+            produtos em destaque e achados que
+            valem a pena. Tudo reunido em um só lugar
+            para você economizar.
           </p>
+
 
           <div class="hero-actions">
 
             <a
-              class="btn-red"
+              href="#ofertas"
+              class="btn-primary"
+            >
+              🔥 VER OFERTAS
+            </a>
+
+
+            <a
               href="https://t.me/OfertasShopeeSharkBot"
               target="_blank"
               rel="noopener noreferrer"
+              class="btn-secondary"
             >
-              ✈️ VER AS OFERTAS
-            </a>
-
-            <a class="btn-outline" href="#ofertas">
-              CONHECER MAIS →
+              🤖 ABRIR BOT
             </a>
 
           </div>
@@ -1084,98 +1432,123 @@
 
         <div class="hero-visual">
 
-          <div class="red-ring"></div>
+          <div class="hero-circle">
 
-          <svg
-            class="shark-large"
-            viewBox="0 0 700 500"
-            role="img"
-            aria-label="Tubarão Shark Ofertas"
-          >
+            <svg
+              class="hero-shark"
+              viewBox="0 0 700 500"
+              aria-label="Tubarão Shark Ofertas"
+            >
 
-            <path
-              class="red-glow"
-              d="M80 300 C150 165 310 100 465 130 C570 150 635 205 650 270"
-            />
+              <path
+                d="M55 304
+                   C110 210 230 150 355 148
+                   C456 146 545 166 615 213
+                   C646 234 663 257 665 280
+                   C629 275 600 286 572 307
+                   C530 339 493 371 428 384
+                   C334 404 227 382 154 351
+                   C112 333 79 318 55 304Z"
+                fill="#1d1d1d"
+                stroke="#fff"
+                stroke-width="5"
+              />
 
-            <path
-              class="shark-body"
-              d="M55 304
-                 C110 210 230 150 355 148
-                 C456 146 545 166 615 213
-                 C646 234 663 257 665 280
-                 C629 275 600 286 572 307
-                 C530 339 493 371 428 384
-                 C334 404 227 382 154 351
-                 C112 333 79 318 55 304Z"
-            />
+              <path
+                d="M290 159 L329 56 L381 158"
+                fill="#0d0d0d"
+                stroke="#fff"
+                stroke-width="4"
+              />
 
-            <path
-              class="shark-fin"
-              d="M290 159 L329 56 L381 158"
-            />
+              <path
+                d="M204 347 L151 424 L251 369"
+                fill="#0d0d0d"
+                stroke="#fff"
+                stroke-width="4"
+              />
 
-            <path
-              class="shark-fin"
-              d="M204 347 L151 424 L251 369"
-            />
+              <path
+                d="M472 365 L537 424 L504 348"
+                fill="#0d0d0d"
+                stroke="#fff"
+                stroke-width="4"
+              />
 
-            <path
-              class="shark-fin"
-              d="M472 365 L537 424 L504 348"
-            />
+              <path
+                d="M103 295
+                   C176 245 270 223 374 225
+                   C470 227 553 246 615 278
+                   C587 291 560 310 535 329
+                   C487 365 427 376 356 370
+                   C257 363 171 335 103 295Z"
+                fill="#e9e9e9"
+              />
 
-            <path
-              class="shark-belly"
-              d="M103 295
-                 C176 245 270 223 374 225
-                 C470 227 553 246 615 278
-                 C587 291 560 310 535 329
-                 C487 365 427 376 356 370
-                 C257 363 171 335 103 295Z"
-            />
+              <path
+                d="M485 205
+                   C554 193 619 214 659 273
+                   C616 316 560 328 499 315
+                   C529 290 532 239 485 205Z"
+                fill="#050505"
+                stroke="#fff"
+                stroke-width="3"
+              />
 
-            <path
-              class="shark-mouth"
-              d="M485 205
-                 C554 193 619 214 659 273
-                 C616 316 560 328 499 315
-                 C529 290 532 239 485 205Z"
-            />
+              <polygon
+                points="521,222 530,252 540,225"
+                fill="#fff"
+              />
 
-            <polygon class="tooth" points="521,222 530,252 540,225"/>
-            <polygon class="tooth" points="541,219 551,249 561,222"/>
-            <polygon class="tooth" points="562,219 572,248 582,222"/>
-            <polygon class="tooth" points="583,220 592,249 602,226"/>
-            <polygon class="tooth" points="602,226 613,250 621,232"/>
+              <polygon
+                points="541,219 551,249 561,222"
+                fill="#fff"
+              />
 
-            <polygon class="tooth" points="527,306 537,279 548,304"/>
-            <polygon class="tooth" points="548,311 559,281 570,309"/>
-            <polygon class="tooth" points="570,311 581,279 591,307"/>
-            <polygon class="tooth" points="592,304 602,278 611,299"/>
+              <polygon
+                points="562,219 572,248 582,222"
+                fill="#fff"
+              />
 
-            <path
-              d="M399 176
-                 C426 181 448 189 468 202"
-              stroke="#111"
-              stroke-width="18"
-              stroke-linecap="round"
-              fill="none"
-            />
+              <polygon
+                points="583,220 592,249 602,226"
+                fill="#fff"
+              />
 
-            <circle class="shark-eye" cx="501" cy="191" r="11"/>
+              <polygon
+                points="527,306 537,279 548,304"
+                fill="#fff"
+              />
 
-            <path
-              d="M520 193
-                 C541 190 555 193 568 198"
-              stroke="#fff"
-              stroke-width="4"
-              stroke-linecap="round"
-              fill="none"
-              opacity=".75"
-            />
+              <polygon
+                points="548,311 559,281 570,309"
+                fill="#fff"
+              />
 
-          </svg>
+              <polygon
+                points="570,311 581,279 591,307"
+                fill="#fff"
+              />
+
+              <circle
+                cx="501"
+                cy="191"
+                r="11"
+                fill="#ff1e2d"
+                stroke="#fff"
+                stroke-width="3"
+              />
+
+              <circle
+                cx="504"
+                cy="188"
+                r="3"
+                fill="#fff"
+              />
+
+            </svg>
+
+          </div>
 
         </div>
 
@@ -1184,184 +1557,548 @@
     </section>
 
 
-    <!-- =========================
-         BENEFITS
-    ========================== -->
+    <!-- ========================================
+         CATEGORIES
+    ========================================= -->
 
-    <section class="benefits-wrap" id="vantagens">
+    <section
+      class="category-section"
+      id="categorias"
+    >
 
-      <div class="benefits">
+      <div class="category-title">
+        Categorias
+      </div>
 
-        <div class="benefit">
-          <div class="benefit-icon">%</div>
-          <h3>Descontos <span>Reais</span></h3>
-          <p>Promoções selecionadas para você economizar.</p>
-        </div>
 
-        <div class="benefit">
-          <div class="benefit-icon">⚡</div>
-          <h3>Ofertas <span>Rápidas</span></h3>
-          <p>As melhores oportunidades antes que acabem.</p>
-        </div>
+      <div class="categories">
 
-        <div class="benefit">
-          <div class="benefit-icon">✓</div>
-          <h3>Compra <span>Segura</span></h3>
-          <p>Ofertas organizadas para facilitar sua escolha.</p>
-        </div>
+        <button
+          class="category active"
+          data-category="todos"
+        >
+          Todas
+        </button>
 
-        <div class="benefit">
-          <div class="benefit-icon">★</div>
-          <h3>Produtos <span>Selecionados</span></h3>
-          <p>Só o que vale a pena, sem enrolação.</p>
-        </div>
+        <button
+          class="category"
+          data-category="eletronicos"
+        >
+          Eletrônicos
+        </button>
+
+        <button
+          class="category"
+          data-category="casa"
+        >
+          Casa
+        </button>
+
+        <button
+          class="category"
+          data-category="beleza"
+        >
+          Beleza
+        </button>
+
+        <button
+          class="category"
+          data-category="games"
+        >
+          Games
+        </button>
+
+        <button
+          class="category"
+          data-category="acessorios"
+        >
+          Acessórios
+        </button>
 
       </div>
 
     </section>
 
 
-    <!-- =========================
+    <!-- ========================================
          PRODUCTS
-    ========================== -->
+    ========================================= -->
 
-    <section class="section" id="ofertas">
+    <section
+      class="products-section"
+      id="ofertas"
+    >
 
       <div class="section-heading">
 
         <h2 class="section-title">
-          Ofertas em <span>Destaque</span>
+          Ofertas em
+          <span>destaque</span>
         </h2>
 
-        <a class="section-link" href="#ofertas">
-          Ver todas →
-        </a>
+
+        <div class="search-box">
+
+          <input
+            type="search"
+            id="search"
+            placeholder="🔎 Procurar oferta..."
+          >
+
+        </div>
 
       </div>
 
 
-      <div class="products">
+      <div
+        class="products"
+        id="products"
+      >
 
-        <article class="product">
+
+        <!-- PRODUTO 1 -->
+
+        <article
+          class="product"
+          data-category="eletronicos"
+          data-name="fone bluetooth premium"
+        >
 
           <div class="product-image">
-            <div class="discount">-35%</div>
-            <div class="product-art">🎧</div>
+
+            <span class="discount">
+              -35%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              🎧
+            </div>
+
           </div>
 
+
           <div class="product-content">
-            <h3>Fone Bluetooth Pro</h3>
-            <div class="old-price">De R$ 199,90</div>
-            <div class="price">R$ 129,90</div>
+
+            <span class="product-tag">
+              Eletrônicos
+            </span>
+
+            <h3>
+              Fone Bluetooth Premium
+            </h3>
+
+            <div class="old-price">
+              De R$ 199,90
+            </div>
+
+            <div class="price">
+              R$ 129,90
+            </div>
 
             <a
-              class="offer-btn"
-              href="https://t.me/OfertasShopeeSharkBot"
-              target="_blank"
-              rel="noopener noreferrer"
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
             >
-              Ver Oferta
+              VER OFERTA
             </a>
+
           </div>
 
         </article>
 
 
-        <article class="product">
+        <!-- PRODUTO 2 -->
+
+        <article
+          class="product"
+          data-category="eletronicos"
+          data-name="smartwatch inteligente"
+        >
 
           <div class="product-image">
-            <div class="discount">-42%</div>
-            <div class="product-art">⌚</div>
+
+            <span class="discount">
+              -42%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              ⌚
+            </div>
+
           </div>
 
+
           <div class="product-content">
-            <h3>Smartwatch X8</h3>
-            <div class="old-price">De R$ 349,90</div>
-            <div class="price">R$ 199,90</div>
+
+            <span class="product-tag">
+              Eletrônicos
+            </span>
+
+            <h3>
+              Smartwatch Inteligente
+            </h3>
+
+            <div class="old-price">
+              De R$ 349,90
+            </div>
+
+            <div class="price">
+              R$ 199,90
+            </div>
 
             <a
-              class="offer-btn"
-              href="https://t.me/OfertasShopeeSharkBot"
-              target="_blank"
-              rel="noopener noreferrer"
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
             >
-              Ver Oferta
+              VER OFERTA
             </a>
+
           </div>
 
         </article>
 
 
-        <article class="product">
+        <!-- PRODUTO 3 -->
+
+        <article
+          class="product"
+          data-category="games"
+          data-name="headset gamer"
+        >
 
           <div class="product-image">
-            <div class="discount">-28%</div>
-            <div class="product-art">🎮</div>
+
+            <span class="discount">
+              -28%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              🎮
+            </div>
+
           </div>
 
+
           <div class="product-content">
-            <h3>Headset Gamer</h3>
-            <div class="old-price">De R$ 249,90</div>
-            <div class="price">R$ 179,90</div>
+
+            <span class="product-tag">
+              Games
+            </span>
+
+            <h3>
+              Headset Gamer
+            </h3>
+
+            <div class="old-price">
+              De R$ 249,90
+            </div>
+
+            <div class="price">
+              R$ 179,90
+            </div>
 
             <a
-              class="offer-btn"
-              href="https://t.me/OfertasShopeeSharkBot"
-              target="_blank"
-              rel="noopener noreferrer"
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
             >
-              Ver Oferta
+              VER OFERTA
             </a>
+
           </div>
 
         </article>
 
 
-        <article class="product">
+        <!-- PRODUTO 4 -->
+
+        <article
+          class="product"
+          data-category="casa"
+          data-name="caixa de som portátil"
+        >
 
           <div class="product-image">
-            <div class="discount">-31%</div>
-            <div class="product-art">🔊</div>
+
+            <span class="discount">
+              -31%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              🔊
+            </div>
+
           </div>
 
+
           <div class="product-content">
-            <h3>Caixa de Som Plus</h3>
-            <div class="old-price">De R$ 229,90</div>
-            <div class="price">R$ 159,90</div>
+
+            <span class="product-tag">
+              Casa
+            </span>
+
+            <h3>
+              Caixa de Som Portátil
+            </h3>
+
+            <div class="old-price">
+              De R$ 229,90
+            </div>
+
+            <div class="price">
+              R$ 159,90
+            </div>
 
             <a
-              class="offer-btn"
-              href="https://t.me/OfertasShopeeSharkBot"
-              target="_blank"
-              rel="noopener noreferrer"
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
             >
-              Ver Oferta
+              VER OFERTA
             </a>
+
           </div>
 
         </article>
 
 
-        <article class="product">
+        <!-- PRODUTO 5 -->
+
+        <article
+          class="product"
+          data-category="casa"
+          data-name="air fryer digital"
+        >
 
           <div class="product-image">
-            <div class="discount">-40%</div>
-            <div class="product-art">💡</div>
+
+            <span class="discount">
+              -45%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              🍟
+            </div>
+
           </div>
 
+
           <div class="product-content">
-            <h3>Fita LED RGB</h3>
-            <div class="old-price">De R$ 149,90</div>
-            <div class="price">R$ 89,90</div>
+
+            <span class="product-tag">
+              Casa
+            </span>
+
+            <h3>
+              Air Fryer Digital
+            </h3>
+
+            <div class="old-price">
+              De R$ 399,90
+            </div>
+
+            <div class="price">
+              R$ 219,90
+            </div>
 
             <a
-              class="offer-btn"
-              href="https://t.me/OfertasShopeeSharkBot"
-              target="_blank"
-              rel="noopener noreferrer"
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
             >
-              Ver Oferta
+              VER OFERTA
             </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUTO 6 -->
+
+        <article
+          class="product"
+          data-category="beleza"
+          data-name="secador de cabelo profissional"
+        >
+
+          <div class="product-image">
+
+            <span class="discount">
+              -37%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              💨
+            </div>
+
+          </div>
+
+
+          <div class="product-content">
+
+            <span class="product-tag">
+              Beleza
+            </span>
+
+            <h3>
+              Secador de Cabelo
+            </h3>
+
+            <div class="old-price">
+              De R$ 219,90
+            </div>
+
+            <div class="price">
+              R$ 139,90
+            </div>
+
+            <a
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
+            >
+              VER OFERTA
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUTO 7 -->
+
+        <article
+          class="product"
+          data-category="acessorios"
+          data-name="carregador turbo usb"
+        >
+
+          <div class="product-image">
+
+            <span class="discount">
+              -40%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              🔌
+            </div>
+
+          </div>
+
+
+          <div class="product-content">
+
+            <span class="product-tag">
+              Acessórios
+            </span>
+
+            <h3>
+              Carregador Turbo USB
+            </h3>
+
+            <div class="old-price">
+              De R$ 99,90
+            </div>
+
+            <div class="price">
+              R$ 59,90
+            </div>
+
+            <a
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
+            >
+              VER OFERTA
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUTO 8 -->
+
+        <article
+          class="product"
+          data-category="eletronicos"
+          data-name="lampada inteligente wifi"
+        >
+
+          <div class="product-image">
+
+            <span class="discount">
+              -33%
+            </span>
+
+            <span class="favorite">
+              ♡
+            </span>
+
+            <div class="product-emoji">
+              💡
+            </div>
+
+          </div>
+
+
+          <div class="product-content">
+
+            <span class="product-tag">
+              Eletrônicos
+            </span>
+
+            <h3>
+              Lâmpada Inteligente Wi-Fi
+            </h3>
+
+            <div class="old-price">
+              De R$ 89,90
+            </div>
+
+            <div class="price">
+              R$ 59,90
+            </div>
+
+            <a
+              class="offer-button"
+              href="#"
+              onclick="alert('Coloque aqui seu link de afiliado da Shopee.'); return false;"
+            >
+              VER OFERTA
+            </a>
+
           </div>
 
         </article>
@@ -1371,31 +2108,74 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ========================================
+         MAIS VENDIDOS
+    ========================================= -->
+
+    <section
+      class="more-section"
+      id="mais-vendidos"
+    >
+
+      <div class="more-box">
+
+        <div>
+
+          <div class="more-title">
+            Quer ver
+            <span>mais ofertas?</span>
+          </div>
+
+          <div class="more-text">
+            A vitrine pode crescer com dezenas de produtos,
+            categorias e links de afiliado.
+          </div>
+
+        </div>
+
+
+        <a
+          class="btn-primary"
+          href="#ofertas"
+        >
+          VER MAIS OFERTAS
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
          TELEGRAM
-    ========================== -->
+    ========================================= -->
 
     <section class="telegram-section">
 
       <div class="telegram-box">
 
         <div>
+
           <div class="telegram-title">
-            Receba as ofertas <span>antes de todo mundo</span>
+            Receba as ofertas
+            <span>antes de todo mundo</span>
           </div>
 
           <div class="telegram-text">
-            Entre no nosso Telegram e acompanhe as melhores oportunidades.
+            Entre no nosso grupo e acompanhe
+            as melhores oportunidades.
           </div>
+
         </div>
 
+
         <a
-          class="btn-red"
-          href="https://t.me/OfertasShopeeSharkBot"
+          class="btn-primary"
+          href="https://t.me/+15l4h2v4YzpmM2Mx"
           target="_blank"
           rel="noopener noreferrer"
         >
-          ✈️ ENTRAR AGORA
+          ✈️ ENTRAR NO GRUPO
         </a>
 
       </div>
@@ -1405,20 +2185,34 @@
   </main>
 
 
-  <!-- =========================
+  <!-- ========================================
        FOOTER
-  ========================== -->
+  ========================================= -->
 
   <footer id="contato">
 
     <div class="footer-inner">
 
+
       <div>
 
         <div class="footer-brand">
 
-          <svg class="footer-logo" viewBox="0 0 100 100" aria-label="Shark Ofertas">
-            <circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+          <svg
+            class="footer-logo"
+            viewBox="0 0 100 100"
+            aria-label="Shark Ofertas"
+          >
+
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              fill="#090909"
+              stroke="#e50914"
+              stroke-width="3"
+            />
+
             <path
               d="M15 58
                  C27 38 48 28 69 33
@@ -1430,18 +2224,22 @@
               stroke="#fff"
               stroke-width="2"
             />
+
             <path
               d="M58 34 L68 18 L72 37"
               fill="#101010"
               stroke="#fff"
               stroke-width="2"
             />
+
             <path
-              d="M30 44 C41 38 56 37 70 42
+              d="M30 44
+                 C41 38 56 37 70 42
                  C61 46 52 50 44 57
                  C38 62 33 61 27 57"
               fill="#e8e8e8"
             />
+
             <path
               d="M64 49
                  C76 49 84 53 89 58
@@ -1451,24 +2249,45 @@
               stroke="#fff"
               stroke-width="2"
             />
-            <polygon points="68,54 72,59 76,54" fill="#fff"/>
-            <polygon points="74,53 78,58 82,54" fill="#fff"/>
-            <polygon points="79,53 83,57 87,55" fill="#fff"/>
-            <circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/>
-            <circle cx="78" cy="42" r="1.5" fill="#fff"/>
+
+            <polygon
+              points="68,54 72,59 76,54"
+              fill="#fff"
+            />
+
+            <polygon
+              points="74,53 78,58 82,54"
+              fill="#fff"
+            />
+
+            <polygon
+              points="79,53 83,57 87,55"
+              fill="#fff"
+            />
+
+            <circle
+              cx="77"
+              cy="43"
+              r="4.5"
+              fill="#ff1e2d"
+            />
+
           </svg>
 
-          <div class="brand-title">
+
+          <div class="brand-name">
             <span>SHARK</span>
             <span>OFERTAS</span>
           </div>
 
         </div>
 
+
         <p class="footer-description">
-          Aqui você encontra as melhores ofertas da internet,
-          com descontos reais e oportunidades selecionadas.
+          Aqui você encontra ofertas, descontos e
+          achados selecionados em um só lugar.
         </p>
+
 
         <div class="socials">
 
@@ -1477,7 +2296,7 @@
             href="https://t.me/OfertasShopeeSharkBot"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Telegram"
+            title="Telegram"
           >
             ✈
           </a>
@@ -1485,7 +2304,7 @@
           <a
             class="social"
             href="#"
-            aria-label="Instagram"
+            title="Instagram"
           >
             ◎
           </a>
@@ -1493,7 +2312,7 @@
           <a
             class="social"
             href="#"
-            aria-label="WhatsApp"
+            title="WhatsApp"
           >
             ◉
           </a>
@@ -1505,24 +2324,54 @@
 
       <div class="footer-column">
 
-        <h3>Links Rápidos</h3>
+        <h3>
+          Links rápidos
+        </h3>
 
-        <a href="#inicio">Início</a>
-        <a href="#ofertas">Ofertas</a>
-        <a href="#vantagens">Vantagens</a>
-        <a href="#categorias">Categorias</a>
+        <a href="#inicio">
+          Início
+        </a>
+
+        <a href="#ofertas">
+          Ofertas
+        </a>
+
+        <a href="#categorias">
+          Categorias
+        </a>
+
+        <a href="#mais-vendidos">
+          Mais Vendidos
+        </a>
 
       </div>
 
 
-      <div class="footer-column" id="categorias">
+      <div class="footer-column">
 
-        <h3>Categorias</h3>
+        <h3>
+          Categorias
+        </h3>
 
-        <a href="#ofertas">Eletrônicos</a>
-        <a href="#ofertas">Casa e Cozinha</a>
-        <a href="#ofertas">Beleza</a>
-        <a href="#ofertas">Esportes</a>
+        <a href="#ofertas">
+          Eletrônicos
+        </a>
+
+        <a href="#ofertas">
+          Casa
+        </a>
+
+        <a href="#ofertas">
+          Beleza
+        </a>
+
+        <a href="#ofertas">
+          Games
+        </a>
+
+        <a href="#ofertas">
+          Acessórios
+        </a>
 
       </div>
 
@@ -1530,10 +2379,105 @@
 
 
     <div class="copyright">
-      © 2026 SHARK OFERTAS — OFERTAS INSANAS. Todos os direitos reservados.
+      © 2026 SHARK OFERTAS — OFERTAS INSANAS.
+      Todos os direitos reservados.
     </div>
 
   </footer>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    const products =
+      document.querySelectorAll(".product");
+
+    const categories =
+      document.querySelectorAll(".category");
+
+    const search =
+      document.getElementById("search");
+
+
+    function filterProducts() {
+
+      const activeCategory =
+        document.querySelector(
+          ".category.active"
+        ).dataset.category;
+
+      const searchText =
+        search.value
+          .toLowerCase()
+          .trim();
+
+
+      products.forEach(product => {
+
+        const category =
+          product.dataset.category;
+
+        const name =
+          product.dataset.name;
+
+
+        const matchesCategory =
+          activeCategory === "todos" ||
+          category === activeCategory;
+
+
+        const matchesSearch =
+          !searchText ||
+          name.includes(searchText);
+
+
+        if (
+          matchesCategory &&
+          matchesSearch
+        ) {
+
+          product.style.display = "";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+
+    categories.forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          categories.forEach(item => {
+            item.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          filterProducts();
+
+        }
+      );
+
+    });
+
+
+    search.addEventListener(
+      "input",
+      filterProducts
+    );
+
+  </script>
 
 </body>
 </html>
