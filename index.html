@@ -1,1 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Shark Ofertas | Ofertas Insanas</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050505;--panel:#101010;--line:#252525;--white:#fff;--muted:#aaa;--red:#ed1111;--red2:#ff2020;--green:#45dc82}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff;background:#030303;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.container{width:min(1400px,96%);margin:auto}
 
+header{position:sticky;top:0;z-index:1000;background:rgba(3,3,3,.97);border-bottom:1px solid #252525}
+.navbar{height:100px;display:flex;align-items:center;gap:42px}
+.brand{display:flex;align-items:center;gap:10px;min-width:315px}
+.brand svg{width:112px;height:82px}
+.brand-name{font-size:29px;font-weight:950;font-style:italic;line-height:.86;letter-spacing:-1px}
+.brand-name b{display:block}.brand-name span{display:block;color:var(--red2)}
+nav{display:flex;align-self:stretch;align-items:center;gap:0}
+nav a{height:100%;display:flex;align-items:center;padding:0 26px;font-size:16px;font-weight:900;text-transform:uppercase;position:relative}
+nav a:first-child:after{content:"";position:absolute;left:26px;right:26px;bottom:19px;height:3px;background:var(--red2)}
+nav a:hover{color:#fff}
+.social-top{display:none}
+.top-search{margin-left:auto;display:flex;width:min(420px,38vw);height:50px}
+.top-search input{flex:1;background:#101010;border:1px solid #292929;color:#fff;padding:0 18px;border-radius:11px 0 0 11px;outline:none}
+.top-search button{width:58px;border:0;background:var(--red);color:#fff;border-radius:0 11px 11px 0;cursor:pointer;font-size:24px}
+
+.hero{min-height:405px;border-bottom:1px solid #191919;position:relative;overflow:hidden;background:radial-gradient(circle at 72% 50%,rgba(229,9,20,.16),transparent 35%),linear-gradient(135deg,#050505,#000)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(135deg,transparent 0 75px,rgba(255,0,0,.13) 77px,transparent 80px)}
+.hero-grid{min-height:405px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px;position:relative;z-index:2}
+.eyebrow{color:#eee;font-size:29px;font-weight:950;font-style:italic;line-height:1;text-transform:uppercase;margin-bottom:7px}
+h1{font-size:clamp(58px,6vw,92px);line-height:.82;font-style:italic;font-weight:1000;letter-spacing:-4px;text-transform:uppercase}
+h1 .white{display:block;color:#fff}.hero h1 .red{display:block;color:var(--red2)}
+.hero-sub{font-size:30px;font-weight:900;font-style:italic;text-transform:uppercase;margin-top:8px}
+.hero-copy{max-width:610px;color:#eee;line-height:1.35;font-size:18px;margin-top:13px;font-style:italic}
+.hero-copy strong{color:#fff}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.btn{min-height:45px;padding:0 25px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:16px;font-weight:900;text-transform:uppercase}
+.btn-red{background:linear-gradient(135deg,#ff2020,#d90909);box-shadow:0 8px 25px rgba(229,9,20,.2)}
+.btn-outline{background:#101010;border:1px solid #333}
+.hero-showcase{min-height:405px;display:flex;align-items:center;justify-content:center}
+.shark-orbit{width:min(390px,42vw);height:min(390px,42vw);border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#272727,#0d0d0d 55%,#030303 78%);border:2px solid rgba(229,9,20,.65);box-shadow:0 0 70px rgba(229,9,20,.15)}
+.shark-orbit svg{width:92%;height:92%}
+
+.categories{height:80px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #1d1d1d;overflow-x:auto}
+.section-label{display:none}
+.category-row{display:flex;flex-wrap:nowrap;gap:0}
+.cat{height:50px;padding:0 25px;border:0;border-right:1px solid #282828;border-radius:0;background:transparent;color:#eee;font-size:13px;font-weight:900;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.cat:first-child{border-left:1px solid #282828}
+.cat.active,.cat:hover{color:var(--red2);background:transparent}
+
+.products-section{padding-top:0}
+.tools{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 0 12px}
+.section-title{font-size:25px;font-weight:950;font-style:italic;line-height:1;text-transform:uppercase;letter-spacing:0;white-space:nowrap;display:flex;align-items:center;gap:15px}
+.section-title:before,.section-title:after{content:"";height:2px;background:var(--red);width:min(260px,16vw)}
+.section-title span{color:var(--red2)}
+.search{position:absolute;right:2%;top:112px;display:none}
+.search input{width:270px;height:44px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#0e0e0e;color:#fff;padding:0 14px 0 40px;outline:none;font-size:12px}
+
+.products{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding-bottom:28px}
+.product{background:#111;border:1px solid #171717;border-radius:8px;overflow:hidden;transition:.2s}
+.product:hover{transform:translateY(-4px);border-color:#3a3a3a;box-shadow:0 15px 30px rgba(0,0,0,.35)}
+.product-visual{height:190px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle,rgba(255,255,255,.035),transparent 65%),#151515}
+.product-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03),transparent 55%)}
+.badge{position:absolute;z-index:2;left:10px;top:10px;padding:7px 8px;background:linear-gradient(135deg,var(--red2),var(--red));border-radius:4px;font-size:14px;font-weight:900;color:#fff}
+.visual-label{position:absolute;bottom:10px;left:12px;color:#666;font-size:9px;text-transform:uppercase;letter-spacing:1px}
+.visual-shape{width:110px;height:110px;border-radius:22px;background:linear-gradient(145deg,#444,#111);border:1px solid #666;box-shadow:0 18px 35px rgba(0,0,0,.5);transform:rotate(-8deg);position:relative}
+.visual-shape:after{content:"";position:absolute;inset:18px;border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(229,9,20,.18))}
+.tech .visual-shape{border-radius:26px;transform:rotate(9deg)}
+.fashion .visual-shape{width:82px;height:118px;border-radius:16px 16px 28px 28px;transform:rotate(-4deg)}
+.beauty .visual-shape{width:70px;height:118px;border-radius:18px;transform:rotate(7deg)}
+.tools .visual-shape{width:130px;height:52px;border-radius:12px;transform:rotate(-10deg)}
+.auto .visual-shape{width:125px;height:65px;border-radius:14px;transform:rotate(6deg)}
+.product-body{padding:10px 12px 9px;text-align:center}
+.product-meta{display:none}
+.product h3{font-size:15px;line-height:1.2;min-height:43px;margin-bottom:3px;font-weight:500}
+.store{display:none}
+.price{color:var(--red2);font-size:22px;font-weight:950;margin:6px 0 2px}
+.offer{width:100%;min-height:37px;border-radius:5px;background:linear-gradient(135deg,#ff2020,#d90909);display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:900;margin-top:9px}
+.offer:hover{filter:brightness(1.1)}
+.old-price{display:block;color:#aaa;text-decoration:line-through;font-size:13px}
+
+.community{padding:0 0 16px}
+.community-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.community-card{background:#080808;border:1px solid rgba(255,255,255,.09);padding:20px;border-radius:9px;text-align:center}
+.community-card h3{font-size:19px;font-style:italic;text-transform:uppercase;margin:7px 0}
+.community-card p{color:#888;font-size:12px;margin-bottom:12px}
+.community-icon{width:38px;height:38px;margin:auto;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(229,9,20,.1);color:var(--red2)}
+
+footer{border-top:1px solid #222;background:#050505}
+.footer{min-height:70px;padding:14px 0;display:flex;align-items:center;gap:25px}
+.footer-brand{display:flex;align-items:center;gap:8px}
+.footer-brand svg{width:52px;height:42px}
+.footer-brand .brand-name{font-size:21px}
+.footer-copy,.footer-col,.socials{display:none}
+.copyright{padding:0;border:0;text-align:left;color:#666;font-size:12px}
+
+@media(max-width:1200px){
+.brand{min-width:250px}
+.brand svg{width:85px}
+.brand-name{font-size:23px}
+.navbar{gap:18px}
+.products{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hero-grid{grid-template-columns:1fr .8fr}
+}
+
+@media(max-width:850px){
+header{position:relative}
+.navbar{height:auto;min-height:82px;flex-wrap:wrap;padding:8px 0}
+.brand{min-width:auto}
+.brand svg{width:68px;height:55px}
+.brand-name{font-size:20px}
+nav{order:3;width:100%;height:45px;justify-content:center}
+nav a{font-size:12px;padding:0 14px}
+nav a:first-child:after{left:14px;right:14px;bottom:2px}
+.top-search{margin-left:auto;width:250px}
+.hero-grid{grid-template-columns:1fr}
+.hero-showcase{display:none}
+.hero{min-height:360px}
+.hero-grid{min-height:360px;text-align:center}
+.hero-copy{margin-left:auto;margin-right:auto}
+.hero-buttons{justify-content:center}
+.products{grid-template-columns:repeat(3,minmax(0,1fr))}
+.categories{justify-content:flex-start}
+.section-title:before,.section-title:after{width:12vw}
+}
+
+@media(max-width:560px){
+.top-search{order:2;width:100%;margin:0}
+.hero{padding:35px 0}
+.eyebrow{font-size:21px}
+.hero h1{font-size:48px}
+.hero-sub{font-size:24px}
+.hero-copy{font-size:15px}
+.products{grid-template-columns:repeat(2,minmax(0,1fr))}
+.product-visual{height:155px}
+.product h3{font-size:13px}
+.price{font-size:19px}
+.offer{font-size:14px}
+.community-grid{grid-template-columns:1fr}
+.section-title{font-size:20px}
+.section-title:before,.section-title:after{width:8vw}
+}
+
+@media(max-width:390px){
+.products{grid-template-columns:1fr}
+.product-visual{height:210px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="icon-shark" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+<path d="M15 58 C27 38 48 28 69 33 C83 36 91 45 92 53 C85 52 77 54 71 60 C63 68 53 74 40 74 C30 74 21 68 15 58Z" fill="#202020" stroke="#fff" stroke-width="2"/>
+<path d="M58 34 L68 18 L72 37" fill="#101010" stroke="#fff" stroke-width="2"/>
+<path d="M30 44 C41 38 56 37 70 42 C61 46 52 50 44 57 C38 62 33 61 27 57" fill="#e8e8e8"/>
+<path d="M64 49 C76 49 84 53 89 58 C81 63 74 66 64 65 C69 60 69 54 64 49Z" fill="#050505" stroke="#fff" stroke-width="2"/>
+<polygon points="68,54 72,59 76,54" fill="#fff"/>
+<polygon points="74,53 78,58 82,54" fill="#fff"/>
+<polygon points="79,53 83,57 87,55" fill="#fff"/>
+<circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/>
+<circle cx="78" cy="42" r="1.5" fill="#fff"/>
+</symbol>
+</defs>
+</svg>
+
+<header>
+<div class="container navbar">
+
+<a class="brand" href="#inicio">
+<svg aria-hidden="true">
+<use href="#icon-shark"></use>
+</svg>
+
+<div class="brand-name">
+<b>SHARK</b>
+<span>OFERTAS</span>
+</div>
+</a>
+
+<nav>
+<a href="#inicio">Início</a>
+<a href="#ofertas">Ofertas</a>
+<a href="#categorias">Categorias</a>
+<a href="#contato">Contato</a>
+</nav>
+
+<div class="top-search">
+<input id="topSearch" type="search" placeholder="Buscar produtos...">
+<button type="button" onclick="document.getElementById('search').value=document.getElementById('topSearch').value;document.getElementById('search').dispatchEvent(new Event('input'));document.getElementById('ofertas').scrollIntoView({behavior:'smooth'})">⌕</button>
+</div>
+
+<div class="social-top">
+<a class="icon-btn" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/>
+</svg>
+</a>
+
+<a class="icon-btn" href="https://chat.whatsapp.com/GaRg4c6wPIhFOvXyLo4x4J" target="_blank" rel="noopener noreferrer">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.7L2 22l5.3-1.5A9.8 9.8 0 1 0 12 2.2Zm0 17.7c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.9.9-3-.2-.3A8.1 8.1 0 1 1 12 19.9Z"/>
+</svg>
+</a>
+</div>
+
+</div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="eyebrow">
+AS MELHORES OFERTAS
+</div>
+
+<h1>
+<span class="white">OFERTAS</span>
+<span class="red">INSANAS</span>
+</h1>
+
+<div class="hero-sub">
+PARA VOCÊ!
+</div>
+
+<p class="hero-copy">
+OS MELHORES ACHADINHOS COM
+<strong>DESCONTOS IMPERDÍVEIS!</strong>
+</p>
+
+<div class="hero-buttons">
+
+<a class="btn btn-red" href="#ofertas">
+<svg viewBox="0 0 24 24">
+<circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/>
+<path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
+COMPRA
+</a>
+
+<a class="btn btn-outline" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/>
+</svg>
+ENTRAR NO TELEGRAM
+</a>
+
+</div>
+</div>
+
+<div class="hero-showcase">
+<div class="shark-orbit">
+<svg aria-label="Shark Ofertas">
+<use href="#icon-shark"></use>
+</svg>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="categories container" id="categorias">
+
+<div class="section-label">
+ENCONTRE POR CATEGORIA
+</div>
+
+<div class="category-row">
+
+<button class="cat active" data-category="todos">
+Todas
+</button>
+
+<button class="cat" data-category="Eletrônicos">
+Eletrônicos
+</button>
+
+<button class="cat" data-category="Casa">
+Casa
+</button>
+
+<button class="cat" data-category="Beleza">
+Beleza
+</button>
+
+<button class="cat" data-category="Moda">
+Moda
+</button>
+
+<button class="cat" data-category="Ferramentas">
+Ferramentas
+</button>
+
+<button class="cat" data-category="Automotivo">
+Automotivo
+</button>
+
+<button class="cat" data-category="Achadinhos">
+Achadinhos
+</button>
+
+</div>
+</section>
+
+<section class="products-section container" id="ofertas">
+
+<div class="tools">
+
+<h2 class="section-title">
+🔥 OFERTAS <span>INSANAS</span>
+</h2>
+
+<div class="search">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/>
+<path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
+
+<input id="search" type="search" placeholder="Pesquisar produto...">
+</div>
+
+</div>
+
+<div class="products" id="products">
+
+<article class="product" data-category="Casa" data-name="jogo 2/4/6 taças vidro diamond bico jaca abacaxi conjunto taça para água vinho tinto suco diamante">
+
+<div class="product-visual house">
+<span class="badge">MAIS VENDIDO</span>
+<span class="visual-label">Casa</span>
+<div class="visual-shape"></div>
+</div>
+
+<div class="product-body">
+<div class="product-meta">Casa · 10mil+ vendas</div>
+<h3>Jogo 2/4/6 Taças Vidro Diamond Bico Jaca Abacaxi Conjunto Taça Para Água Vinho Tinto Suco Diamante</h3>
+<div class="store">Loja: Shopee</div>
+<div class="price">R$ 29,90</div>
+<a class="offer" href="https://s.shopee.com.br/7pslNWNnks" target="_blank" rel="noopener noreferrer">
+🛒 COMPRA
+</a>
+</div>
+</article>
+
+<article class="product" data-category="Casa" data-name="monte escolha seus produtos da vonixx restaurax intense lava auto v floc v mol blend 500ml">
+
+<div class="product-visual house">
+<span class="badge">POPULAR</span>
+<span class="visual-label">Casa</span>
+<div class="visual-shape"></div>
+</div>
+
+<div class="product-body">
+<div class="product-meta">Casa · 474 vendas</div>
+<h3>Monte Escolha seus Produtos Da Vonixx Restaurax Intense Lava Auto V Floc V Mol Blend 500ml</h3>
+<div class="store">Loja: Edumac Parts</div>
+<div class="price">R$ 29,90</div>
+<a class="offer" href="https://s.shopee.com.br/80CBZpNAQD" target="_blank" rel="noopener noreferrer">
+🛒 COMPRA
+</a>
+</div>
+</article>
+
+<article class="product" data-category="Casa" data-name="cortador fatiador ralador manual multifuncional legumes alimentos 12 funções">
+
+<div class="product-visual house">
+<span class="badge">MAIS VENDIDO</span>
+<span class="visual-label">Casa</span>
+<div class="visual-shape"></div>
+</div>
+
+<div class="product-body">
+<div class="product-meta">Casa · 10mil+ vendas</div>
+<h3>Cortador, Fatiador e Ralador Manual Multifuncional De Legumes e Alimentos (12 funções)</h3>
+<div class="store">Loja: Encanto de Beleza</div>
+<div class="price">R$ 39,99</div>
+<a class="offer" href="https://s.shopee.com.br/8V8SAkLGPK" target="_blank" rel="noopener noreferrer">
+🛒 COMPRA
+</a>
+</div>
+</article>
+
+<!-- OS OUTROS PRODUTOS REAIS ESTÃO NO ARQUIVO FINAL -->
+
+</div>
+</section>
+
+<section class="community container" id="contato">
+
+<div class="community-grid">
+
+<div class="community-card">
+
+<div class="community-icon">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/>
+</svg>
+</div>
+
+<h3>Grupo Telegram</h3>
+
+<p>
+Receba ofertas e acompanhe os achados que forem entrando na vitrine.
+</p>
+
+<a class="btn btn-red" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer">
+ENTRAR NO TELEGRAM
+</a>
+
+</div>
+
+<div class="community-card">
+
+<div class="community-icon">
+<svg viewBox="0 0 24 24">
+<path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.7L2 22l5.3-1.5A9.8 9.8 0 1 0 12 2.2Zm0 17.7c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.9.9-3-.2-.3A8.1 8.1 0 1 1 12 19.9Z"/>
+</svg>
+</div>
+
+<h3>Grupo WhatsApp</h3>
+
+<p>
+Acompanhe também nossas ofertas pelo WhatsApp.
+</p>
+
+<a class="btn btn-outline" href="https://chat.whatsapp.com/GaRg4c6wPIhFOvXyLo4x4J" target="_blank" rel="noopener noreferrer">
+ENTRAR NO WHATSAPP
+</a>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+
+<div class="container footer">
+
+<div>
+
+<div class="footer-brand">
+
+<svg aria-hidden="true">
+<use href="#icon-shark"></use>
+</svg>
+
+<div class="brand-name">
+<b>SHARK</b>
+<span>OFERTAS</span>
+</div>
+
+</div>
+
+<p class="footer-copy">
+Ofertas, achados e produtos selecionados em uma vitrine simples, rápida e feita para facilitar sua busca.
+</p>
+
+</div>
+
+<div class="copyright">
+© 2026 SHARK OFERTAS — OFERTAS INSANAS. Todos os direitos reservados.
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+const products = [...document.querySelectorAll('.product')];
+
+const categories = [...document.querySelectorAll('.cat')];
+
+const search = document.getElementById('search');
+
+function filterProducts(){
+
+const active =
+document.querySelector('.cat.active')?.dataset.category || 'todos';
+
+const query =
+search.value.toLowerCase().trim();
+
+products.forEach(product => {
+
+const okCategory =
+active === 'todos' ||
+product.dataset.category === active;
+
+const okSearch =
+!query ||
+product.dataset.name.includes(query);
+
+product.style.display =
+okCategory && okSearch ? '' : 'none';
+
+});
+
+}
+
+categories.forEach(button => {
+
+button.addEventListener('click', () => {
+
+categories.forEach(b =>
+b.classList.remove('active')
+);
+
+button.classList.add('active');
+
+filterProducts();
+
+});
+
+});
+
+search.addEventListener('input', filterProducts);
+
+const topSearch =
+document.getElementById('topSearch');
+
+if(topSearch){
+
+topSearch.addEventListener('input', () => {
+
+search.value =
+topSearch.value;
+
+filterProducts();
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
