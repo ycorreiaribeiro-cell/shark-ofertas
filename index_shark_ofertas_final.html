@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Shark Ofertas | Vitrine de Ofertas</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050505;--panel:#0e0e0e;--line:#252525;--white:#fff;--muted:#9d9d9d;--red:#e50914;--red2:#ff2634;--green:#45dc82}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--white);background:radial-gradient(circle at 85% 0%,rgba(229,9,20,.12),transparent 25%),linear-gradient(180deg,#020202 0%,#0a0a0a 45%,#050505 100%);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(1400px,94%);margin:auto}
+header{position:sticky;top:0;z-index:1000;background:rgba(5,5,5,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.navbar{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:58px;height:58px}
+.brand-name{font-size:25px;font-weight:950;font-style:italic;line-height:.87;letter-spacing:-1px}
+.brand-name b{display:block}.brand-name span{display:block;color:var(--red2)}
+.header-search{position:relative;flex:1;max-width:520px}.header-search svg{position:absolute;left:14px;top:12px;color:#777;width:18px;height:18px}.header-search input{width:100%;height:42px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#0d0d0d;color:#fff;padding:0 14px 0 42px;outline:none;font-size:12px}.header-search input:focus{border-color:rgba(229,9,20,.6)}
+nav a.active{color:#fff;border-bottom:2px solid var(--red2);padding-bottom:9px}
+nav{display:flex;gap:28px}
+nav a{font-size:12px;font-weight:900;color:#ccc;text-transform:uppercase}
+nav a:hover{color:var(--red2)}
+.social-top{display:flex;gap:8px}.icon-btn{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#111;border:1px solid rgba(229,9,20,.4);transition:.2s}
+.icon-btn svg,.social svg,.offer svg,.btn svg{width:18px;height:18px}.icon-btn:hover,.social:hover{background:var(--red);border-color:var(--red);transform:translateY(-2px)}
+.hero{padding:70px 0 48px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
+.eyebrow{color:var(--red2);font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;display:flex;gap:9px;align-items:center;margin-bottom:18px}.eyebrow:before{content:"";width:35px;height:3px;background:var(--red)}
+h1{font-size:clamp(54px,7vw,100px);line-height:.82;font-style:italic;font-weight:950;letter-spacing:-4px;text-transform:uppercase}h1 .white{display:block}h1 .red{display:block;color:var(--red2)}
+.hero-sub{font-size:clamp(26px,3vw,40px);font-weight:900;font-style:italic;text-transform:uppercase;margin-top:15px}.hero-copy{max-width:650px;color:#aaa;line-height:1.65;font-size:17px;margin-top:22px}.hero-copy strong{color:var(--red2)}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{min-height:52px;padding:0 22px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:11px;font-weight:900;text-transform:uppercase}
+.btn-red{background:linear-gradient(135deg,var(--red2),var(--red));box-shadow:0 12px 30px rgba(229,9,20,.22)}.btn-outline{background:#101010;border:1px solid rgba(255,255,255,.12)}
+.hero-showcase{min-height:410px;display:flex;align-items:center;justify-content:center}.shark-orbit{width:min(430px,80vw);height:min(430px,80vw);border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#292929,#111 50%,#050505 78%);border:2px solid rgba(229,9,20,.55);box-shadow:0 0 0 15px rgba(229,9,20,.025),0 0 60px rgba(229,9,20,.12)}.shark-orbit svg{width:78%;height:78%}
+.categories{padding:15px 0 54px}.section-label{color:#8f8f8f;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}.category-row{display:flex;flex-wrap:wrap;gap:9px}.cat{padding:11px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:#101010;color:#ccc;font-size:11px;font-weight:900;text-transform:uppercase;cursor:pointer}.cat.active,.cat:hover{background:rgba(229,9,20,.1);border-color:rgba(229,9,20,.55);color:#fff}
+.tools{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px}.section-title{font-size:clamp(34px,4vw,50px);font-weight:950;font-style:italic;line-height:.9;text-transform:uppercase;letter-spacing:-2px}.section-title span{color:var(--red2)}
+.search{position:relative}.search svg{position:absolute;left:13px;top:13px;color:#666}.search input{width:270px;height:44px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#0e0e0e;color:#fff;padding:0 14px 0 40px;outline:none;font-size:12px}.search input:focus{border-color:rgba(229,9,20,.6)}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-bottom:80px}.product{background:linear-gradient(180deg,#111,#090909);border:1px solid rgba(255,255,255,.08);border-radius:13px;overflow:hidden;transition:.22s}.product:hover{transform:translateY(-5px);border-color:rgba(229,9,20,.45);box-shadow:0 18px 42px rgba(0,0,0,.33)}
+.product-visual{height:215px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle,rgba(229,9,20,.12),transparent 63%),#0b0b0b}.product-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03),transparent 55%)}.badge{position:absolute;z-index:2;left:11px;top:11px;padding:7px 9px;background:linear-gradient(135deg,var(--red2),var(--red));border-radius:6px;font-size:9px;font-weight:900}.visual-label{position:absolute;bottom:11px;left:12px;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:1px}.visual-shape{width:105px;height:105px;border-radius:22px;background:linear-gradient(145deg,#414141,#111);border:1px solid #666;box-shadow:0 18px 35px rgba(0,0,0,.5);transform:rotate(-8deg);position:relative}.visual-shape:after{content:"";position:absolute;inset:18px;border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(229,9,20,.18))}.tech .visual-shape{border-radius:26px;transform:rotate(9deg)}.fashion .visual-shape{width:82px;height:118px;border-radius:16px 16px 28px 28px;transform:rotate(-4deg)}.beauty .visual-shape{width:70px;height:118px;border-radius:18px;transform:rotate(7deg)}.tools .visual-shape{width:130px;height:52px;border-radius:12px;transform:rotate(-10deg)}.auto .visual-shape{width:125px;height:65px;border-radius:14px;transform:rotate(6deg)}
+.product-body{padding:16px}.product-meta{color:var(--red2);font-size:9px;font-weight:900;text-transform:uppercase;margin-bottom:8px}.product h3{font-size:15px;line-height:1.35;min-height:62px;margin-bottom:7px}.store{color:#6f6f6f;font-size:10px;line-height:1.35;min-height:28px}.price{color:var(--green);font-size:23px;font-weight:950;margin:9px 0 14px}.offer{width:100%;min-height:43px;border-radius:7px;background:linear-gradient(135deg,var(--red2),var(--red));display:flex;align-items:center;justify-content:center;gap:8px;font-size:10px;font-weight:900}.offer:hover{filter:brightness(1.08)}
+.best-section{padding:0 0 75px}.best-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}.best-link{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--red2);border:1px solid rgba(229,9,20,.4);padding:11px 14px;border-radius:7px}.best-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.best-grid .product{height:100%}.best-grid .product-visual{height:190px}.best-grid .product h3{min-height:auto}.community{padding-bottom:75px}.community-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.community-card{background:#101010;border:1px solid rgba(255,255,255,.08);padding:28px;border-radius:13px}.community-card h3{font-size:23px;font-style:italic;text-transform:uppercase;margin:12px 0 8px}.community-card p{color:#818181;font-size:13px;line-height:1.55;margin-bottom:18px}.community-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(229,9,20,.1);color:var(--red2)}
+footer{border-top:1px solid rgba(255,255,255,.07);background:#040404}.footer{padding:50px 0 30px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:45px}.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:15px}.footer-brand svg{width:55px;height:55px}.footer-copy{max-width:450px;color:#6e6e6e;font-size:13px;line-height:1.7}.footer-col h4{color:var(--red2);font-size:11px;text-transform:uppercase;margin-bottom:16px}.footer-col a{display:block;color:#7e7e7e;font-size:13px;margin-bottom:10px}.footer-col a:hover{color:#fff}.socials{display:flex;gap:9px;margin-top:18px}.social{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#101010;border:1px solid rgba(229,9,20,.4);transition:.2s}.copyright{padding:18px 20px;border-top:1px solid rgba(255,255,255,.05);text-align:center;color:#4e4e4e;font-size:11px}
+@media(max-width:1050px){.header-search{max-width:360px}nav{display:flex}.hero-grid{grid-template-columns:1fr}.hero-showcase{order:-1;min-height:340px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}.footer{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.navbar{min-height:74px;flex-wrap:wrap;padding:10px 0}.header-search{order:3;max-width:none;flex-basis:100%}.brand svg{width:48px;height:48px}.brand-name{font-size:20px}.top-socials{gap:5px}.icon-btn{width:38px;height:38px}.hero{padding-top:40px}.hero-showcase{min-height:285px}.shark-orbit{width:305px;height:305px}.hero-buttons,.tools{flex-direction:column;align-items:stretch}.btn,.search,.search input{width:100%}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product-visual{height:175px}.product h3{font-size:13px;min-height:70px}.price{font-size:19px}.best-grid,.community-grid,.footer{grid-template-columns:1fr}.best-head{align-items:flex-start;flex-direction:column}}
+@media(max-width:430px){.products{grid-template-columns:1fr}.product-visual{height:210px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="icon-shark" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="46" fill="#090909" stroke="#e50914" stroke-width="3"/>
+<path d="M15 58 C27 38 48 28 69 33 C83 36 91 45 92 53 C85 52 77 54 71 60 C63 68 53 74 40 74 C30 74 21 68 15 58Z" fill="#202020" stroke="#fff" stroke-width="2"/>
+<path d="M58 34 L68 18 L72 37" fill="#101010" stroke="#fff" stroke-width="2"/>
+<path d="M30 44 C41 38 56 37 70 42 C61 46 52 50 44 57 C38 62 33 61 27 57" fill="#e8e8e8"/>
+<path d="M64 49 C76 49 84 53 89 58 C81 63 74 66 64 65 C69 60 69 54 64 49Z" fill="#050505" stroke="#fff" stroke-width="2"/>
+<polygon points="68,54 72,59 76,54" fill="#fff"/><polygon points="74,53 78,58 82,54" fill="#fff"/><polygon points="79,53 83,57 87,55" fill="#fff"/>
+<circle cx="77" cy="43" r="4.5" fill="#ff1e2d"/><circle cx="78" cy="42" r="1.5" fill="#fff"/>
+</symbol>
+</defs>
+</svg>
+
+<header>
+<div class="container navbar">
+<a class="brand" href="#inicio">
+<svg aria-hidden="true"><use href="#icon-shark"></use></svg>
+<div class="brand-name"><b>SHARK</b><span>OFERTAS</span></div>
+</a>
+<div class="header-search">
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input id="topSearch" type="search" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+</div>
+<nav>
+<a class="active" href="#inicio">Início</a>
+<a href="#mais-vendidos">Mais Vendidos</a>
+</nav>
+</div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<div class="eyebrow">OFERTAS SELECIONADAS TODOS OS DIAS</div>
+<h1><span class="white">OFERTAS</span><span class="red">INSANAS</span></h1>
+<div class="hero-sub">PARA VOCÊ!</div>
+<p class="hero-copy">Uma vitrine com <strong>ofertas, achados e produtos</strong> selecionados para você encontrar boas oportunidades sem ficar procurando por horas.</p>
+<div class="hero-buttons">
+<a class="btn btn-red" href="#ofertas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> COMPRAR AGORA</a>
+<a class="btn btn-outline" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/></svg> ENTRAR NO TELEGRAM</a>
+</div>
+</div>
+<div class="hero-showcase">
+<div class="shark-orbit"><svg aria-label="Shark Ofertas"><use href="#icon-shark"></use></svg></div>
+</div>
+</div>
+</section>
+
+<section class="categories container" id="categorias">
+<div class="section-label">ENCONTRE POR CATEGORIA</div>
+<div class="category-row">
+<button class="cat active" data-category="todos">Todas</button>
+<button class="cat" data-category="Eletrônicos">Eletrônicos</button>
+<button class="cat" data-category="Casa">Casa</button>
+<button class="cat" data-category="Beleza">Beleza</button>
+<button class="cat" data-category="Moda">Moda</button>
+<button class="cat" data-category="Ferramentas">Ferramentas</button>
+<button class="cat" data-category="Automotivo">Automotivo</button>
+<button class="cat" data-category="Achadinhos">Achadinhos</button>
+</div>
+</section>
+
+<section class="products-section container" id="ofertas">
+<div class="tools">
+<h2 class="section-title">OFERTAS <span>IMPERDÍVEIS</span></h2>
+<div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="search" type="search" placeholder="Pesquisar produto..."></div>
+</div>
+<div class="products" id="products"><article class="product" data-category="Casa" data-name="jogo 2/4/6 taças vidro diamond bico jaca abacaxi conjunto taça para água vinho tinto suco diamante">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 10mil+ vendas</div>
+            <h3>Jogo 2/4/6 Taças Vidro Diamond Bico Jaca Abacaxi Conjunto Taça Para Água Vinho Tinto Suco Diamante</h3>
+            <div class="store">Loja: Life Hack Homeware</div>
+            <div class="price">R$ 18,90</div>
+            <a class="offer" href="https://s.shopee.com.br/7pslNWNnks" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="eudora siàge pro cronology">
+          <div class="product-visual beauty">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 17 vendas</div>
+            <h3>Eudora Siàge Pro Cronology</h3>
+            <div class="store">Loja: kellyperfumaria000</div>
+            <div class="price">R$ 69,99</div>
+            <a class="offer" href="https://s.shopee.com.br/7fZLBDOR5r" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Ferramentas" data-name="bomba de ar portatil compressor inflator multi-função 4 em 1 powerbank 8kmah bateria calibrador de carro auto pneu">
+          <div class="product-visual tools">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Ferramentas</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Ferramentas · 8mil+ vendas</div>
+            <h3>Bomba de Ar Portatil Compressor Inflator Multi-função 4 em 1 PowerBank 8kmah Bateria Calibrador de Carro Auto Pneu</h3>
+            <div class="store">Loja: SUPER CHETO</div>
+            <div class="price">R$ 69,99</div>
+            <a class="offer" href="https://s.shopee.com.br/5VUqbEWgUS" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="shorts masculino tactel praia academia treino corrida verão secagem rápida">
+          <div class="product-visual fashion">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 6 vendas</div>
+            <h3>Shorts Masculino Tactel Praia Academia Treino Corrida Verão Secagem Rápida</h3>
+            <div class="store">Loja: F&amp;A MIX</div>
+            <div class="price">R$ 28,40</div>
+            <a class="offer" href="https://s.shopee.com.br/5LBQOvXJpR" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="kit 10 marmitas potes 800ml travas laterais hermeticas - livres de bpa alimentos organiza congelador - kaziva">
+          <div class="product-visual house">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 91 vendas</div>
+            <h3>Kit 10 Marmitas Potes 800ml Travas Laterais hermeticas - Livres de BPA Alimentos organiza congelador - KAZIVA</h3>
+            <div class="store">Loja: Unipack</div>
+            <div class="price">R$ 29,90</div>
+            <a class="offer" href="https://s.shopee.com.br/5q7gzqVPoY" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="chinelo sandalia de dedo havainas brasil bandeira">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 10mil+ vendas</div>
+            <h3>Chinelo Sandalia de Dedo Havainas Brasil Bandeira</h3>
+            <div class="store">Loja: LojasConnect</div>
+            <div class="price">R$ 19,90</div>
+            <a class="offer" href="https://s.shopee.com.br/5foGnXW39X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Ferramentas" data-name="parafusadeira e furadeira a bateria pf21b2 21v com duas baterias f02 4979 - falasca">
+          <div class="product-visual tools">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Ferramentas</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Ferramentas · 4mil+ vendas</div>
+            <h3>PARAFUSADEIRA E FURADEIRA A BATERIA PF21B2 21V COM DUAS BATERIAS F02 4979 - FALASCA</h3>
+            <div class="store">Loja: Falasca Ferramentas</div>
+            <div class="price">R$ 129,90</div>
+            <a class="offer" href="https://s.shopee.com.br/6AkXOSU98e" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="vestido longo com foro e bojo, feminino com manga variados super confortáveis e leves qualidade e durabilidade">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Vestido Longo Com FORO e BOJO, Feminino Com manga Variados super confortáveis e leves qualidade e durabilidade</h3>
+            <div class="store">Loja: villcamodaoficial</div>
+            <div class="price">R$ 85,99</div>
+            <a class="offer" href="https://s.shopee.com.br/60R7C9UmTd" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="kit potes herméticos porta mantimentos vidro retangular 640ml 370ml marmita fitness gp home">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 6mil+ vendas</div>
+            <h3>Kit Potes Herméticos Porta Mantimentos Vidro Retangular 640ml 370ml Marmita Fitness GP Home</h3>
+            <div class="store">Loja: DSD Multi Comercio</div>
+            <div class="price">R$ 52,90</div>
+            <a class="offer" href="https://s.shopee.com.br/6VNNn4SsSk" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="kit 30 esmalte impala cores sortidas sem repetição atacado manicure pedicure">
+          <div class="product-visual beauty">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 1mil+ vendas</div>
+            <h3>Kit 30 Esmalte Impala Cores Sortidas Sem Repetição Atacado Manicure Pedicure</h3>
+            <div class="store">Loja: Claire Botê</div>
+            <div class="price">R$ 38,99</div>
+            <a class="offer" href="https://s.shopee.com.br/6L3xalTVnj" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="kit calças jeans masculina skinny com lycra elastano original promoção nf">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 4mil+ vendas</div>
+            <h3>kit calças jeans masculina skinny com LYCRA elastano original promoção NF</h3>
+            <div class="store">Loja: Omg Denim</div>
+            <div class="price">R$ 59,99</div>
+            <a class="offer" href="https://s.shopee.com.br/9V0zMaHSNM" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="tênis  esportivo confortável academia corrida academia fittshoes">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 10mil+ vendas</div>
+            <h3>Tênis  Esportivo Confortável Academia Corrida Academia fittshoes</h3>
+            <div class="store">Loja: (FITTSHOES)</div>
+            <div class="price">R$ 64,31</div>
+            <a class="offer" href="https://s.shopee.com.br/9KhZAHI5iL" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="utensílios silicone cozinha antiaderente fácil limpeza alta resistência">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 2mil+ vendas</div>
+            <h3>Utensílios Silicone Cozinha Antiaderente Fácil Limpeza Alta Resistência</h3>
+            <div class="store">Loja: sprochow</div>
+            <div class="price">R$ 19,90</div>
+            <a class="offer" href="https://s.shopee.com.br/9pdplCGBhS" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="kit produto para lavar moto cera shampoo desengraxante pretinho limpador de corrente vonixx">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 1mil+ vendas</div>
+            <h3>Kit Produto para Lavar Moto Cera Shampoo Desengraxante Pretinho Limpador de Corrente Vonixx</h3>
+            <div class="store">Loja: Patron - Distribuidora</div>
+            <div class="price">R$ 124,90</div>
+            <a class="offer" href="https://s.shopee.com.br/9fKPYtGp2R" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="kit 2 ou 3 calças jeans masculina skinny com elastano linha premium cintura média conforto casual qualidade">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 2mil+ vendas</div>
+            <h3>Kit 2 ou 3 Calças Jeans Masculina Skinny com Elastano Linha Premium Cintura Média Conforto Casual Qualidade</h3>
+            <div class="store">Loja: _ROYALTY_</div>
+            <div class="price">R$ 89,90</div>
+            <a class="offer" href="https://s.shopee.com.br/AAGg9oEv1Y" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="chinelo bandeirinha original sandalia de dedo unissex verão. presente para o dia dos pais">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 100mil+ vendas</div>
+            <h3>Chinelo Bandeirinha Original Sandalia De Dedo Unissex Verão. Presente para o Dia dos Pais</h3>
+            <div class="store">Loja: Ferrari_Shopping</div>
+            <div class="price">R$ 19,90</div>
+            <a class="offer" href="https://s.shopee.com.br/9zxFxVFYMX" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="noveve kit panelas antiaderentes 14 peças cor branco – cozinha elegante com alta qualidade">
+          <div class="product-visual house">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 288 vendas</div>
+            <h3>Noveve Kit Panelas Antiaderentes 14 Peças Cor Branco – Cozinha Elegante com Alta Qualidade</h3>
+            <div class="store">Loja: Lumora Lar</div>
+            <div class="price">R$ 531,04</div>
+            <a class="offer" href="https://s.shopee.com.br/AUtWYQDeLe" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Ferramentas" data-name="parafusadeira de alta potência 26v/48v, caixa de armazenamento e mais de 30 acessórios (uso profissional)">
+          <div class="product-visual tools">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Ferramentas</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Ferramentas · 2mil+ vendas</div>
+            <h3>Parafusadeira de alta potência 26V/48V, caixa de armazenamento e mais de 30 acessórios (uso profissional)</h3>
+            <div class="store">Loja: Escolha Fina</div>
+            <div class="price">R$ 59,99</div>
+            <a class="offer" href="https://s.shopee.com.br/AKa6M7EHgd" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="espelho orgânico 120x50cm e 95x40cm lapidado moderno grande forms c/ suporte ou led touch (form suporte) ou led">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 8mil+ vendas</div>
+            <h3>Espelho Orgânico 120X50cm e 95x40cm Lapidado Moderno Grande Forms C/ SUPORTE ou LED TOUCH (FORM SUPORTE) OU LED</h3>
+            <div class="store">Loja: AGUNBAGUM</div>
+            <div class="price">R$ 79,99</div>
+            <a class="offer" href="https://s.shopee.com.br/8AVbm8MX5E" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="monte escolha seus produtos da vonixx restaurax intense lava auto v floc v mol blend 500ml">
+          <div class="product-visual house">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 474 vendas</div>
+            <h3>Monte Escolha seus Produtos Da Vonixx Restaurax Intense Lava Auto V Floc V Mol Blend 500ml</h3>
+            <div class="store">Loja: Edumac Parts</div>
+            <div class="price">R$ 29,90</div>
+            <a class="offer" href="https://s.shopee.com.br/80CBZpNAQD" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="cortador, fatiador e ralador manual multifuncional de legumes e alimentos (12 funções)">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 10mil+ vendas</div>
+            <h3>Cortador, Fatiador e Ralador Manual Multifuncional De Legumes e Alimentos (12 funções)</h3>
+            <div class="store">Loja: Encanto de Beleza</div>
+            <div class="price">R$ 39,99</div>
+            <a class="offer" href="https://s.shopee.com.br/8V8SAkLGPK" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="kit rosa mosqueta com 7 itens de skincare - phallebeauty">
+          <div class="product-visual beauty">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 138 vendas</div>
+            <h3>Kit Rosa Mosqueta com 7 Itens de Skincare - Phallebeauty</h3>
+            <div class="store">Loja: BiibiStoree</div>
+            <div class="price">R$ 69,90</div>
+            <a class="offer" href="https://s.shopee.com.br/8Kp1yRLtkJ" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="caixa caixinha de som bluetooth pendrive fm sd portátil 50w preto ipx4">
+          <div class="product-visual tech">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 142 vendas</div>
+            <h3>Caixa Caixinha De Som Bluetooth Pendrive Fm Sd Portátil 50w Preto Ipx4</h3>
+            <div class="store">Loja: MLTX GROUP</div>
+            <div class="price">R$ 59,00</div>
+            <a class="offer" href="https://s.shopee.com.br/8plIZMJzjQ" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="furadeira/parafusadeira 26v/48v dual baterias, conjunto com estuche e ferramentas inclusas">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Furadeira/Parafusadeira 26V/48V Dual Baterias, Conjunto com Estuche e Ferramentas Inclusas</h3>
+            <div class="store">Loja: MAIS LEGAL SHOP</div>
+            <div class="price">R$ 59,99</div>
+            <a class="offer" href="https://s.shopee.com.br/8fRsN3Kd4P" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="porta temperos giratório profissional 9 potes de vidro com tampa dosadora condimentos">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 10mil+ vendas</div>
+            <h3>Porta Temperos Giratório Profissional 9 Potes de Vidro com Tampa Dosadora Condimentos</h3>
+            <div class="store">Loja: RD ECOM</div>
+            <div class="price">R$ 36,89</div>
+            <a class="offer" href="https://s.shopee.com.br/9AO8xyIj3W" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="tênis de corrida ultraleve com placa de carbono para homens e mulheres">
+          <div class="product-visual fashion">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 179 vendas</div>
+            <h3>Tênis De Corrida Ultraleve Com Placa De Carbono Para Homens E Mulheres</h3>
+            <div class="store">Loja: MOISTMOIST</div>
+            <div class="price">R$ 79,33</div>
+            <a class="offer" href="https://s.shopee.com.br/904ilfJMOV" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="vestido indiano longo estampado longo frente única e costa nua, elegante">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 2mil+ vendas</div>
+            <h3>Vestido Indiano longo ESTAMPADO LONGO FRENTE Única e costa Nua, ELEGANTE</h3>
+            <div class="store">Loja: Bellas Confecções</div>
+            <div class="price">R$ 72,59</div>
+            <a class="offer" href="https://s.shopee.com.br/1Vyhpsluc4" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="kits de meias soquete unissex premium masculina e feminina">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 10mil+ vendas</div>
+            <h3>Kits de Meias Soquete Unissex Premium Masculina e Feminina</h3>
+            <div class="store">Loja: SHERON OUTLET</div>
+            <div class="price">R$ 9,90</div>
+            <a class="offer" href="https://s.shopee.com.br/1LfHdZmXx3" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="kit 12 utensílios de cozinha silicone cabo madeira resistente calor espátula colher antiaderente">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 2mil+ vendas</div>
+            <h3>Kit 12 Utensílios de Cozinha Silicone Cabo Madeira Resistente Calor Espátula Colher Antiaderente</h3>
+            <div class="store">Loja: baruchcommerce</div>
+            <div class="price">R$ 21,90</div>
+            <a class="offer" href="https://s.shopee.com.br/1qbYEUkdwA" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="conjunto academia feminino alta compressão fitness top e short com bolso">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 5mil+ vendas</div>
+            <h3>Conjunto Academia Feminino Alta Compressão Fitness Top e Short com Bolso</h3>
+            <div class="store">Loja: Anjostore10</div>
+            <div class="price">R$ 35,00</div>
+            <a class="offer" href="https://s.shopee.com.br/1gI82BlHH9" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="conjunto de cílios 3d miofia 10-18mm, estilo misto, indicado para iniciantes.">
+          <div class="product-visual beauty">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 3mil+ vendas</div>
+            <h3>Conjunto de cílios 3D MIOFIA 10-18mm, estilo misto, indicado para iniciantes.</h3>
+            <div class="store">Loja: MIOFIA.br</div>
+            <div class="price">R$ 13,00</div>
+            <a class="offer" href="https://s.shopee.com.br/2BEOd6jNGG" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="pijama feminino baby doll short verão confortável blogueirinha alcinha luxo com botões">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Pijama Feminino Baby Doll Short Verão Confortável Blogueirinha Alcinha Luxo Com Botões</h3>
+            <div class="store">Loja: BE SEXY</div>
+            <div class="price">R$ 15,99</div>
+            <a class="offer" href="https://s.shopee.com.br/20uyQnk0bF" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="eudora siàge revela os cachos">
+          <div class="product-visual beauty">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 11 vendas</div>
+            <h3>Eudora siàge Revela os Cachos</h3>
+            <div class="store">Loja: kellyperfumaria000</div>
+            <div class="price">R$ 89,99</div>
+            <a class="offer" href="https://s.shopee.com.br/2VrF1ii6aM" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="medicube zero pore pad 2.0,zero pore pad mild 3types(original pad/refill)">
+          <div class="product-visual beauty">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 40mil+ vendas</div>
+            <h3>MEDICUBE zero pore pad 2.0,zero pore pad mild 3types(original pad/refill)</h3>
+            <div class="store">Loja: koksara.kbeauty</div>
+            <div class="price">R$ 139,98</div>
+            <a class="offer" href="https://s.shopee.com.br/2LXopPijvL" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="kit calça de moletom algodão unissex com elástico e punho estilo e conforto">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Kit Calça de Moletom Algodão unissex com Elástico e Punho Estilo e Conforto</h3>
+            <div class="store">Loja: Fox Wear</div>
+            <div class="price">R$ 54,90</div>
+            <a class="offer" href="https://s.shopee.com.br/BTKFQqzJw" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="jaqueta de couro masculina veludo casaco inverno com capuz">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Jaqueta De Couro Masculina Veludo Casaco Inverno Com Capuz</h3>
+            <div class="store">Loja: AB EXPRESS</div>
+            <div class="price">R$ 196,90</div>
+            <a class="offer" href="https://s.shopee.com.br/19u37rcev" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="power bank 20000/30000/50000mah carga rápida display digital 33w~66w usb type-c">
+          <div class="product-visual tech">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 3mil+ vendas</div>
+            <h3>Power Bank 20000/30000/50000mAh Carga Rápida Display Digital 33W~66W USB Type-C</h3>
+            <div class="store">Loja: ANJGG Brazil</div>
+            <div class="price">R$ 66,99</div>
+            <a class="offer" href="https://s.shopee.com.br/W6Ae2pie2" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="comedouro e bebedouro automático para gatos e cães premium 1l jelplast">
+          <div class="product-visual house">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 53 vendas</div>
+            <h3>Comedouro e Bebedouro Automático para Gatos e Cães Premium 1L Jelplast</h3>
+            <div class="store">Loja: Kiplife</div>
+            <div class="price">R$ 54,90</div>
+            <a class="offer" href="https://s.shopee.com.br/LmkRjqLz1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="calça balao baggy jeans boca larga pants cân sk8 estilosa moda masculina 100% algodão- estilo mandrake">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 10mil+ vendas</div>
+            <h3>Calça balao baggy Jeans Boca Larga pants cân Sk8 Estilosa Moda Masculina 100% Algodão- Estilo Mandrake</h3>
+            <div class="store">Loja: Dodô Variedades</div>
+            <div class="price">R$ 47,98</div>
+            <a class="offer" href="https://s.shopee.com.br/qj12eoRy8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="panela ou jogos de alumínio batido com kit, 1,2 3, 4 ou 5 peças fundidas caçarola utensílios domésticos">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 4mil+ vendas</div>
+            <h3>Panela ou Jogos de Alumínio Batido com Kit, 1,2 3, 4 ou 5 Peças Fundidas Caçarola Utensílios Domésticos</h3>
+            <div class="store">Loja: LOJAS DI KASA</div>
+            <div class="price">R$ 65,00</div>
+            <a class="offer" href="https://s.shopee.com.br/gPaqLp5J7" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="tonico poderoso crescimento acelerado e ação antiquedas">
+          <div class="product-visual beauty">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 7mil+ vendas</div>
+            <h3>Tonico Poderoso Crescimento Acelerado E Ação Antiquedas</h3>
+            <div class="store">Loja: DK DELAP COSMETICOS</div>
+            <div class="price">R$ 23,00</div>
+            <a class="offer" href="https://s.shopee.com.br/1BLrRGnBIE" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Achadinhos" data-name="kit 2 short feminino alfaiataria social com dois cinto cintura alta promoção">
+          <div class="product-visual deal">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Achadinhos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Achadinhos · 10mil+ vendas</div>
+            <h3>Kit 2 Short Feminino Alfaiataria Social com dois Cinto Cintura Alta PROMOÇÃO</h3>
+            <div class="store">Loja: NFT MODAS</div>
+            <div class="price">R$ 38,90</div>
+            <a class="offer" href="https://s.shopee.com.br/112RExnodD" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="kit com 10 cuecas boxer masculina microfibra com forro 100% algodão ou 5 cueca masculino">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 10mil+ vendas</div>
+            <h3>Kit com 10 Cuecas Boxer Masculina Microfibra com Forro 100% Algodão ou 5 Cueca Masculino</h3>
+            <div class="store">Loja: Lojas_Zilck</div>
+            <div class="price">R$ 29,90</div>
+            <a class="offer" href="https://s.shopee.com.br/4AzT0mblCq" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="tênis de corrida profissional para maratona flying burn 3 , palma completa , placa de carbono , pb izhc noks">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 3mil+ vendas</div>
+            <h3>Tênis De Corrida Profissional Para Maratona Flying Burn 3 , Palma Completa , Placa De Carbono , PB IZHC NOKS</h3>
+            <div class="store">Loja: MOISTMOIST</div>
+            <div class="price">R$ 76,59</div>
+            <a class="offer" href="https://s.shopee.com.br/40g2oTcOXp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="kit de extensão de cílios novo e moderno, curl c d individual com cola para cílios, selante e pinças de 8-16mm.">
+          <div class="product-visual beauty">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 10mil+ vendas</div>
+            <h3>Kit de Extensão de Cílios Novo e Moderno, Curl C D Individual com Cola para Cílios, Selante e Pinças de 8-16MM.</h3>
+            <div class="store">Loja: Value Choice</div>
+            <div class="price">R$ 18,26</div>
+            <a class="offer" href="https://s.shopee.com.br/4VcJPOaUWw" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="inova fone sem fio bluetooth original fone iphone e android sem fio headset gamer earpods microfone">
+          <div class="product-visual tech">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 10mil+ vendas</div>
+            <h3>INOVA fone sem fio bluetooth original fone iphone e Android sem fio headset gamer earpods microfone</h3>
+            <div class="store">Loja: INOVA MALL.001</div>
+            <div class="price">R$ 56,99</div>
+            <a class="offer" href="https://s.shopee.com.br/4LItD5b7rv" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="caixa de som bluetooth portátil com led rgb portátil fm usb tws 30w para praia, festa ou viagem">
+          <div class="product-visual tech">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 100mil+ vendas</div>
+            <h3>Caixa de som Bluetooth Portátil Com Led RGB Portátil FM USB TWS 30W Para Praia, Festa ou Viagem</h3>
+            <div class="store">Loja: Ankco Shop</div>
+            <div class="price">R$ 94,96</div>
+            <a class="offer" href="https://s.shopee.com.br/4qF9o0ZDr2" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="painel ferramentas organizador perfurado 118x52 + brindes">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 3mil+ vendas</div>
+            <h3>Painel Ferramentas Organizador Perfurado 118x52 + Brindes</h3>
+            <div class="store">Loja: EXBIAN FERRAMENTAS</div>
+            <div class="price">R$ 149,36</div>
+            <a class="offer" href="https://s.shopee.com.br/4fvjbhZrC1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Beleza" data-name="kit 3 cremes corporais tododia natura original 400ml">
+          <div class="product-visual beauty">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Beleza</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Beleza · 0 vendas</div>
+            <h3>Kit 3 Cremes Corporais Tododia Natura Original 400ml</h3>
+            <div class="store">Loja: Max Perfumes</div>
+            <div class="price">R$ 55,98</div>
+            <a class="offer" href="https://s.shopee.com.br/5As0CcXxB8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Casa" data-name="fatiador de cozinha multifuncional profissional em aço inoxidável 16 em 1/3 em 1  fatiador de vegetais/frutas/legumes">
+          <div class="product-visual house">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Casa</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Casa · 10mil+ vendas</div>
+            <h3>Fatiador de cozinha multifuncional profissional em aço inoxidável 16 em 1/3 em 1  fatiador de vegetais/frutas/legumes</h3>
+            <div class="store">Loja: TXB TECH LTDA</div>
+            <div class="price">R$ 26,99</div>
+            <a class="offer" href="https://s.shopee.com.br/50Ya0JYaW7" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="fone de ouvido bluetooth sem fio j760- cancelamento de ruído conforto">
+          <div class="product-visual tech">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 5mil+ vendas</div>
+            <h3>Fone de Ouvido Bluetooth Sem Fio J760- Cancelamento de Ruído Conforto</h3>
+            <div class="store">Loja: 𝙨𝙝𝙤𝙥𝙚 𝙨𝙩𝙮𝙡𝙚</div>
+            <div class="price">R$ 50,33</div>
+            <a class="offer" href="https://s.shopee.com.br/2qU5QKgpui" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Ferramentas" data-name="lavadora alta pressão lav1600 vonder">
+          <div class="product-visual tools">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Ferramentas</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Ferramentas · 20mil+ vendas</div>
+            <h3>Lavadora Alta Pressão Lav1600 Vonder</h3>
+            <div class="store">Loja: Deend</div>
+            <div class="price">R$ 377,60</div>
+            <a class="offer" href="https://s.shopee.com.br/2gAfE1hTFh" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="moletom canguru premium estampado bmw carro esportivo blusa de frio confortável inverno frio">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 2mil+ vendas</div>
+            <h3>Moletom Canguru Premium Estampado BMW Carro Esportivo Blusa de Frio Confortável Inverno FRIO</h3>
+            <div class="store">Loja: GOC VESTUÀRIOS</div>
+            <div class="price">R$ 45,65</div>
+            <a class="offer" href="https://s.shopee.com.br/3B6vowfZEo" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="jaqueta corta vento impermeável masculina premium com capuz 100% poliéster leve motorsports edition">
+          <div class="product-visual fashion">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 396 vendas</div>
+            <h3>Jaqueta Corta Vento Impermeável Masculina Premium com Capuz 100% Poliéster Leve Motorsports Edition</h3>
+            <div class="store">Loja: SuperMixBrStore</div>
+            <div class="price">R$ 66,00</div>
+            <a class="offer" href="https://s.shopee.com.br/30nVcdgCZn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="conjunto suplex feminino top e short cintura alta - cinza e preto treino e academia">
+          <div class="product-visual fashion">
+            <span class="badge">OFERTA</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 24 vendas</div>
+            <h3>Conjunto Suplex Feminino Top e Short Cintura Alta - Cinza e Preto Treino e Academia</h3>
+            <div class="store">Loja: LS FITNESS</div>
+            <div class="price">R$ 72,00</div>
+            <a class="offer" href="https://s.shopee.com.br/3VjmDYeIYu" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Eletrônicos" data-name="massageador de pescoço e ombros portátil 3d com calor relaxante massagem profunda">
+          <div class="product-visual tech">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Eletrônicos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Eletrônicos · 277 vendas</div>
+            <h3>Massageador de Pescoço e Ombros Portátil 3D Com Calor Relaxante Massagem Profunda</h3>
+            <div class="store">Loja: XQW - ELETRÔNICOS E VARIEDADES</div>
+            <div class="price">R$ 118,99</div>
+            <a class="offer" href="https://s.shopee.com.br/3LQM1Fevtt" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="macaquinho feminino ana ruga 0 transparência com ziper tubinho curto moda blogueira">
+          <div class="product-visual fashion">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 948 vendas</div>
+            <h3>MACAQUINHO FEMININO ANA RUGA 0 TRANSPARÊNCIA COM ZIPER TUBINHO CURTO MODA BLOGUEIRA</h3>
+            <div class="store">Loja: ModajdFeminina</div>
+            <div class="price">R$ 31,89</div>
+            <a class="offer" href="https://s.shopee.com.br/3qMccAd1t0" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Achadinhos" data-name="esfregador giratório elétrico escova limpeza elétrica 360 graus 25w">
+          <div class="product-visual deal">
+            <span class="badge">POPULAR</span>
+            <span class="visual-label">Achadinhos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Achadinhos · 234 vendas</div>
+            <h3>Esfregador Giratório Elétrico Escova Limpeza Elétrica 360 Graus 25W</h3>
+            <div class="store">Loja: SHR STORE</div>
+            <div class="price">R$ 92,99</div>
+            <a class="offer" href="https://s.shopee.com.br/3g3CPrdfDz" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Achadinhos" data-name="kit camiseta caveira dry-fit + coqueteleira fuse 700ml preta dark lab">
+          <div class="product-visual deal">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Achadinhos</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Achadinhos · 5mil+ vendas</div>
+            <h3>Kit Camiseta Caveira Dry-Fit + Coqueteleira Fuse 700ml Preta Dark Lab</h3>
+            <div class="store">Loja: Dark Lab Oficial</div>
+            <div class="price">R$ 39,90</div>
+            <a class="offer" href="https://s.shopee.com.br/70JeNzQySe" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article>
+<article class="product" data-category="Moda" data-name="vestido de festa longo feminino super promoção">
+          <div class="product-visual fashion">
+            <span class="badge">MAIS VENDIDO</span>
+            <span class="visual-label">Moda</span>
+            <div class="visual-shape"></div>
+          </div>
+          <div class="product-body">
+            <div class="product-meta">Moda · 1mil+ vendas</div>
+            <h3>Vestido De Festa Longo Feminino Super Promoção</h3>
+            <div class="store">Loja: Trilha.com</div>
+            <div class="price">R$ 49,54</div>
+            <a class="offer" href="https://s.shopee.com.br/7Ad4aIQL7h" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 10h10l3-7H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg> VER OFERTA</a>
+          </div>
+        </article></div>
+</section>
+
+<section class="best-section container" id="mais-vendidos">
+  <div class="best-head"><h2 class="section-title">MAIS <span>VENDIDOS</span></h2><a class="best-link" href="#ofertas">VER PRODUTOS</a></div>
+  <div class="best-grid" id="bestGrid"></div>
+</section>
+
+<section class="community container" id="contato">
+<div class="community-grid">
+<div class="community-card">
+<div class="community-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/></svg></div>
+<h3>Grupo Telegram</h3>
+<p>Receba ofertas e acompanhe os achados que forem entrando na vitrine.</p>
+<a class="btn btn-red" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/></svg> ENTRAR NO TELEGRAM</a>
+</div>
+<div class="community-card">
+<div class="community-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.7L2 22l5.3-1.5A9.8 9.8 0 1 0 12 2.2Zm0 17.7c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.9.9-3-.2-.3A8.1 8.1 0 1 1 12 19.9Z"/></svg></div>
+<h3>Grupo WhatsApp</h3>
+<p>Acompanhe também nossas ofertas pelo WhatsApp.</p>
+<a class="btn btn-outline" href="https://chat.whatsapp.com/GaRg4c6wPIhFOvXyLo4x4J" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.7L2 22l5.3-1.5A9.8 9.8 0 1 0 12 2.2Zm0 17.7c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.9.9-3-.2-.3A8.1 8.1 0 1 1 12 19.9Z"/></svg> ENTRAR NO WHATSAPP</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer">
+<div>
+<div class="footer-brand">
+<svg aria-hidden="true"><use href="#icon-shark"></use></svg>
+<div class="brand-name"><b>SHARK</b><span>OFERTAS</span></div>
+</div>
+<p class="footer-copy">Ofertas, achados e produtos selecionados em uma vitrine simples, rápida e feita para facilitar sua busca.</p>
+<div class="socials">
+<a class="social" href="https://t.me/+15l4h2v4YzpmM2Mx" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12.3c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.6.2 1.3.2Z"/></svg></a>
+<a class="social" href="https://chat.whatsapp.com/GaRg4c6wPIhFOvXyLo4x4J" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.7L2 22l5.3-1.5A9.8 9.8 0 1 0 12 2.2Zm0 17.7c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.9.9-3-.2-.3A8.1 8.1 0 1 1 12 19.9Z"/></svg></a>
+<a class="social" href="https://www.instagram.com/sharkofertasbr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg></a>
+<a class="social" href="https://www.tiktok.com/@shark.ofertas.br?_r=1&_t=ZS-99C6fPqBIW5" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 3c.2 1.8 1.2 3.1 3.1 3.3v3c-1.1 0-2.2-.3-3.1-.9v6.2c0 3.6-2.4 5.4-5.2 5.4-3 0-5.2-2.1-5.2-5 0-3 2.4-5.1 5.5-5.1.3 0 .6 0 .9.1v3c-.3-.1-.6-.2-.9-.2-1.3 0-2.4.8-2.4 2.2 0 1.1.8 2 2.1 2 1.1 0 2.1-.7 2.1-2.2V3h3.1Z"/></svg></a>
+</div>
+</div>
+<div class="footer-col"><h4>Links rápidos</h4><a href="#inicio">Início</a><a href="#categorias">Categorias</a><a href="#contato">Contato</a></div>
+<div class="footer-col"><h4>Categorias</h4><a href="#ofertas">Eletrônicos</a><a href="#ofertas">Casa</a><a href="#ofertas">Beleza</a><a href="#ofertas">Moda</a><a href="#ofertas">Ferramentas</a></div>
+</div>
+<div class="copyright">© 2026 SHARK OFERTAS — OFERTAS INSANAS. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+const products = [...document.querySelectorAll('.products .product')];
+const categories = [...document.querySelectorAll('.cat')];
+const search = document.getElementById('search');
+const topSearch = document.getElementById('topSearch');
+const bestGrid = document.getElementById('bestGrid');
+products.slice(0,3).forEach((product, index) => {
+  const clone = product.cloneNode(true);
+  clone.querySelector('.badge')?.replaceChildren(document.createTextNode(index === 0 ? '1º MAIS VENDIDO' : index === 1 ? '2º MAIS VENDIDO' : '3º MAIS VENDIDO'));
+  bestGrid.appendChild(clone);
+});
+
+function filterProducts() {
+  const active = document.querySelector('.cat.active')?.dataset.category || 'todos';
+  const query = search.value.toLowerCase().trim();
+
+  products.forEach(product => {
+    const okCategory = active === 'todos' || product.dataset.category === active;
+    const okSearch = !query || product.dataset.name.includes(query);
+    product.style.display = okCategory && okSearch ? '' : 'none';
+  });
+}
+
+categories.forEach(button => {
+  button.addEventListener('click', () => {
+    categories.forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+    filterProducts();
+  });
+});
+
+search.addEventListener('input', filterProducts);
+topSearch.addEventListener('input', () => { search.value = topSearch.value; filterProducts(); });
+</script>
+</body>
+</html>
